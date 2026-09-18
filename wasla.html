@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wasla · وصلة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+<style>
+:root{
+  --bg:#F4F5F7;--surface:#FFFFFF;--soft:#EEF0F3;--ink:#0D1524;--muted:#5D6675;--line:#E1E4E9;
+  --primary:#0D1524;--primary-2:#1F2A3D;--on-primary:#FFFFFF;--accent:#C6A15B;--on-accent:#0D1524;--accent-ink:#8C6B2E;--accent-soft:#F7F1E4;
+  --hero:#0A111E;--hero-ink:#F3F1EC;--hero-muted:#A9AFBA;
+  --ok:#1E7A55;--ok-bg:#E4F2EA;--warn:#8C6B2E;--warn-bg:#F7F1E4;--info:#2C4F86;--info-bg:#E8EEF7;--pur:#574A86;--pur-bg:#EEEBF6;
+  --err:#B3261E;--r:14px;--rs:10px;--shadow:0 1px 2px rgba(13,21,36,.04),0 12px 32px -18px rgba(13,21,36,.25);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#090E18;--surface:#101826;--soft:#172133;--ink:#ECEAE4;--muted:#9AA2B0;--line:#243047;
+  --primary:#C6A15B;--primary-2:#D6B574;--on-primary:#0A111E;--accent:#C6A15B;--on-accent:#0A111E;--accent-ink:#D9B878;--accent-soft:#2A2416;
+  --hero:#070C15;--hero-ink:#ECEAE4;--hero-muted:#9AA2B0;
+  --ok:#6FCF9F;--ok-bg:#12302A;--warn:#D9B878;--warn-bg:#2A2416;--info:#9DB6E6;--info-bg:#18243C;--pur:#BDB0EC;--pur-bg:#231F3B;--err:#FF8A80;--shadow:none;}}
+:root[data-theme="dark"]{
+  --bg:#090E18;--surface:#101826;--soft:#172133;--ink:#ECEAE4;--muted:#9AA2B0;--line:#243047;
+  --primary:#C6A15B;--primary-2:#D6B574;--on-primary:#0A111E;--accent:#C6A15B;--on-accent:#0A111E;--accent-ink:#D9B878;--accent-soft:#2A2416;
+  --hero:#070C15;--hero-ink:#ECEAE4;--hero-muted:#9AA2B0;
+  --ok:#6FCF9F;--ok-bg:#12302A;--warn:#D9B878;--warn-bg:#2A2416;--info:#9DB6E6;--info-bg:#18243C;--pur:#BDB0EC;--pur-bg:#231F3B;--err:#FF8A80;--shadow:none;}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+.app{max-width:780px;margin:0 auto;padding:0 18px 64px}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.bar{max-width:1080px;margin:0 auto;padding:11px 20px;display:flex;align-items:center;gap:10px}
+.logo{font-weight:700;font-size:1.35rem;display:flex;align-items:center;gap:10px;color:var(--ink);cursor:pointer;background:none;border:0;padding:0}
+.mark{width:34px;height:34px;display:grid;place-items:center}
+.mark svg{width:19px;height:19px}
+.spacer{flex:1}
+.hbtn{background:transparent;border:1px solid var(--line);border-radius:10px;padding:6px 12px;cursor:pointer;font-size:.9rem;color:var(--ink)}
+.who{font-size:.88rem;color:var(--muted);max-width:36vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+nav.tabs{max-width:780px;margin:0 auto;padding:0 18px;display:flex;gap:4px;overflow-x:auto}
+nav.tabs:empty{display:none}
+nav.tabs button{background:transparent;border:0;color:var(--muted);padding:10px 12px 12px;cursor:pointer;border-bottom:2px solid transparent;font-weight:500;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--primary)}
+.count{display:inline-block;min-width:20px;padding:0 6px;margin-inline-start:5px;border-radius:999px;background:var(--accent);color:var(--on-accent);font-size:.75rem;font-weight:700;line-height:20px;text-align:center}
+h1{font-size:1.65rem;line-height:1.25;margin:30px 0 6px;font-weight:700}
+h2{font-size:1.15rem;margin:0 0 12px;font-weight:600}
+.lead{color:var(--muted);margin:0 0 22px;max-width:62ch}
+.muted{color:var(--muted)}.k{color:var(--muted);font-size:.8rem}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:16px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:14px}
+@media(min-width:580px){.two{grid-template-columns:1fr 1fr}}
+label{display:block;font-weight:500;font-size:.92rem;margin-bottom:6px}
+label small{color:var(--muted);font-weight:400}
+input,select,textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:var(--rs);padding:11px 13px}
+textarea{min-height:78px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 18%,transparent)}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg label{margin:0;flex:1;min-width:140px;border:1px solid var(--line);border-radius:var(--rs);padding:11px 13px;cursor:pointer;font-weight:500;display:flex;gap:9px;align-items:center;background:var(--bg)}
+.seg input{width:auto;accent-color:var(--primary)}
+.seg label:has(input:checked){border-color:var(--primary);background:color-mix(in srgb,var(--primary) 8%,var(--surface))}
+.d{display:block;font-size:.8rem;color:var(--muted);font-weight:400}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:12px 22px;font-weight:600;cursor:pointer;text-decoration:none;font-size:.95rem;transition:background .15s}
+.btn:disabled{opacity:.55;cursor:default}
+.btn svg{width:18px;height:18px}
+.primary{background:var(--primary);color:var(--on-primary)}.primary:hover{background:var(--primary-2)}
+.amber{background:var(--accent);color:var(--on-accent)}
+.ghost{background:var(--surface);border:1px solid var(--line);color:var(--ink);font-weight:500;padding:10px 16px}
+.wa{background:#1FA855;color:#fff;font-weight:500;padding:10px 16px}
+.sm{padding:7px 13px;font-size:.87rem;border-radius:10px}
+.full{width:100%}
+.err{color:var(--err);font-size:.9rem;min-height:1.2em;margin:4px 0 0}
+.hidden{display:none!important}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.ltr{direction:ltr;unicode-bidi:isolate}
+.okline{color:var(--ok);font-size:.88rem;font-weight:500}
+/* landing */
+.hero{background:var(--hero);color:var(--hero-ink);overflow:hidden;position:relative;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.hero .wrap{display:grid;gap:44px;padding-top:68px;padding-bottom:76px;align-items:center;position:relative}
+@media(min-width:900px){.hero .wrap{grid-template-columns:1.15fr .85fr}}
+.hero .kicker{display:inline-flex;align-items:center;gap:10px;color:var(--accent);font-weight:500;margin-bottom:18px;font-size:.95rem}.hero .kicker::before{content:"";width:28px;height:1px;background:var(--accent)}
+.hero h1{font-size:clamp(2.2rem,5.6vw,3.6rem);line-height:1.1;margin:0 0 18px;font-weight:700;letter-spacing:-.015em}
+.hero p{color:var(--hero-muted);font-size:1.12rem;max-width:33em;margin:0 0 30px;font-weight:300}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn{padding:14px 26px;font-size:1rem}
+.hero .btn.line{background:transparent;color:var(--hero-ink);border:1px solid color-mix(in srgb,var(--hero-ink) 35%,transparent)}
+.facts{display:flex;gap:30px;flex-wrap:wrap;margin-top:40px;color:var(--hero-muted);font-size:.92rem}
+.facts b{display:block;color:var(--hero-ink);font-size:1.3rem;font-weight:600}
+.routeart{position:relative;max-width:420px;width:100%;justify-self:center}
+.routeart svg.path{position:absolute;inset:-30px -10px auto auto;width:100%;height:auto;opacity:.5}
+.demo-card{position:relative;background:var(--surface);color:var(--ink);border-radius:20px;padding:20px;box-shadow:0 30px 60px -22px rgba(0,0,0,.55)}
+.demo-card .top{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.demo-card .pbar{height:6px;border-radius:6px;background:var(--soft);overflow:hidden;margin:14px 0 6px}
+.demo-card .pbar i{display:block;height:100%;width:70%;background:var(--accent);border-radius:6px}
+.demo-card.two{margin:-14px 34px 0 -18px;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;font-size:.92rem}
+@media (prefers-reduced-motion:no-preference){.demo-card .pbar i{animation:grow 2.4s ease-out both .3s}@keyframes grow{from{width:6%}}}
+section.band{padding:76px 0}
+section.band h2{font-size:clamp(1.55rem,3.4vw,2.1rem);margin:0 0 10px;font-weight:700;line-height:1.25}
+section.band .sub{color:var(--muted);max-width:40em;margin:0 0 38px;font-size:1.05rem}
+.promises{display:grid;gap:0;border-top:1px solid var(--line)}
+.promise{display:grid;gap:6px 40px;padding:30px 0;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.promise{grid-template-columns:1fr 1fr;align-items:baseline}}
+.promise b{font-size:clamp(1.5rem,3.6vw,2.2rem);line-height:1.2;font-weight:700}
+.promise p{margin:0;color:var(--muted);font-size:1.05rem}
+.steps3{display:grid;gap:22px;counter-reset:s}
+@media(min-width:760px){.steps3{grid-template-columns:repeat(3,1fr)}}
+.step{padding-top:18px;border-top:2px solid var(--accent)}
+.step::before{counter-increment:s;content:counter(s);display:block;font-size:1rem;font-weight:700;color:var(--accent-ink);margin-bottom:6px}
+.step b{display:block;font-size:1.1rem;margin-bottom:4px}
+.step p{margin:0;color:var(--muted)}
+.feats{display:grid;gap:14px}
+@media(min-width:680px){.feats{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.feats{grid-template-columns:1fr 1fr 1fr}}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.feat .ic{width:42px;height:42px;border-radius:12px;background:var(--soft);display:grid;place-items:center;color:var(--primary);margin-bottom:14px}
+.feat .ic svg{width:22px;height:22px}
+.feat b{display:block;margin-bottom:4px;font-size:1.06rem}
+.feat p{margin:0;color:var(--muted);font-size:.95rem}
+.feat.star{background:var(--hero);color:var(--hero-ink);border-color:transparent}
+.feat.star p{color:var(--hero-muted)}.feat.star .ic{background:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent)}
+.emis{display:flex;flex-wrap:wrap;gap:10px}
+.emis span{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-weight:500}
+.closing{background:var(--hero);color:var(--hero-ink);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:24px;padding:44px 32px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.closing h2{margin:0!important;font-size:clamp(1.4rem,3vw,1.9rem)}
+.closing p{margin:6px 0 0;opacity:.85}
+footer{padding:30px 0 44px;color:var(--muted);font-size:.88rem}
+/* auth */
+.auth{max-width:440px;margin:40px auto}
+.demo-btns{display:flex;gap:8px;flex-wrap:wrap}
+.divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.85rem;margin:6px 0}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+/* app */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+@media(min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--rs);padding:13px 15px}
+.stat b{display:block;font-size:1.35rem;line-height:1.25;font-weight:600}
+.stat span{color:var(--muted);font-size:.84rem}
+.stat.hot{border-color:color-mix(in srgb,var(--accent) 60%,var(--line));background:var(--accent-soft)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:.88rem;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:17px 19px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.card-top b{direction:ltr;font-weight:600}
+.time{color:var(--muted);font-size:.84rem}
+.pill{margin-inline-start:auto;border-radius:999px;padding:3px 12px;font-size:.8rem;font-weight:600}
+.tag{border-radius:7px;padding:2px 9px;font-size:.78rem;font-weight:500;background:var(--soft);color:var(--muted)}
+.tag.paid{background:var(--ok-bg);color:var(--ok)}
+.s-new{background:var(--warn-bg);color:var(--warn)}.s-assigned{background:var(--pur-bg);color:var(--pur)}
+.s-returning,.s-returned{background:#FDE7E7;color:var(--err)}
+.retlist{list-style:none;margin:10px 0;padding:0}.retlist li{display:flex;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:.92rem}.retlist li span:nth-child(2){flex:1}
+.stops li.rt::before{background:#FDE7E7;color:#B3261E}
+.s-picked{background:var(--info-bg);color:var(--info)}.s-delivered{background:var(--ok-bg);color:var(--ok)}
+.route{display:grid;grid-template-columns:18px 1fr;column-gap:12px}
+.route .dot{width:13px;height:13px;border-radius:50%;margin-top:6px;border:3px solid var(--primary);background:var(--surface)}
+.route .dot.to{background:var(--accent);border-color:var(--accent)}
+.route .line{border-inline-start:2px dotted var(--line);margin-inline-start:5px;min-height:12px}
+.route .stop{padding-bottom:10px}
+a.lnk{color:var(--primary);font-weight:500}
+.money{border:1px solid var(--line);border-radius:var(--rs);margin:6px 0 14px;overflow:hidden}
+.money .mr{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px}
+.money .mr+.mr{border-top:1px solid var(--line)}
+.money .mr.hl{background:var(--accent-soft)}.money .mr.okr{background:var(--ok-bg)}
+.money .mr small{display:block;color:var(--muted);font-size:.78rem}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.assign{display:flex;gap:8px;align-items:center;flex:1;min-width:220px}
+.assign select{padding:8px 10px}
+.empty{text-align:center;color:var(--muted);padding:40px 16px;border:1px dashed var(--line);border-radius:var(--r)}
+.otp{display:flex;gap:8px;align-items:center;flex-wrap:wrap;width:100%}
+.otp input{max-width:120px;text-align:center;letter-spacing:.3em;font-weight:700;direction:ltr}
+.zones{display:flex;gap:6px;flex-wrap:wrap}
+.toggle{border:0;border-radius:999px;padding:5px 13px;font-size:.83rem;font-weight:600;cursor:pointer}
+.toggle.on{background:var(--ok-bg);color:var(--ok)}.toggle.off{background:var(--soft);color:var(--muted)}
+.checks{display:flex;gap:8px;flex-wrap:wrap}
+.checks label{margin:0;display:flex;gap:6px;align-items:center;font-weight:400;border:1px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.checks input{width:auto;accent-color:var(--primary)}
+.note{background:var(--soft);border-radius:var(--rs);padding:15px 17px;font-size:.93rem}
+.note ol{margin:6px 0 0;padding-inline-start:20px}
+.flash{background:var(--ok-bg);color:var(--ok);border-radius:var(--rs);padding:9px 13px;font-size:.9rem}
+.linkbox{display:flex;gap:8px;margin-top:10px}.linkbox input{direction:ltr;font-size:.85rem}
+.receipt .row{display:flex;justify-content:space-between;gap:12px;padding:5px 0}
+.receipt .row.total{border-top:1px solid var(--line);margin-top:6px;padding-top:11px;font-weight:700;font-size:1.1rem}
+.banner{background:var(--accent-soft);color:var(--warn);border-radius:var(--rs);padding:10px 14px;margin-top:18px;display:flex;gap:10px;align-items:center;justify-content:space-between;font-size:.92rem}
+.banner button{background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer}
+.shopline{display:flex;align-items:center;gap:12px;margin-top:26px}
+.avatar{width:44px;height:44px;border-radius:12px;background:var(--primary);color:var(--on-primary);display:grid;place-items:center;font-weight:700;font-size:1.2rem;flex:none}
+.center{text-align:center}
+.bignum{font-size:2.1rem;font-weight:700;direction:ltr}
+.code{display:inline-block;font-size:2rem;font-weight:700;letter-spacing:.35em;padding:8px 16px 8px 24px;border:2px dashed var(--accent);border-radius:var(--rs);direction:ltr;margin:6px 0}
+.tl{list-style:none;padding:0;margin:20px auto 0;text-align:start;max-width:320px}
+.tl li{display:flex;gap:12px;align-items:flex-start;padding-bottom:14px}
+.tl li::before{content:"";width:13px;height:13px;border-radius:50%;border:3px solid var(--line);background:var(--surface);flex:none;margin-top:6px}
+.tl li.done::before{background:var(--ok);border-color:var(--ok)}
+.tl li.now::before{background:var(--accent);border-color:var(--accent)}
+.tl li:not(.done):not(.now){color:var(--muted)}
+.secure{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:.85rem}
+.locbtn{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+/* driver route */
+.scanbig{width:100%;padding:18px;font-size:1.1rem;border-radius:16px}
+.routecard{background:var(--hero);color:var(--hero-ink);border-radius:var(--r);padding:20px;margin:16px 0}
+.routecard .rh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.routecard .rh b{font-size:1.15rem}
+.routecard .rh span{color:var(--hero-muted);font-size:.92rem}
+.stops{list-style:none;margin:0 0 16px;padding:0;counter-reset:st}
+.stops li{display:grid;grid-template-columns:30px 1fr auto;gap:10px;align-items:center;padding:10px 0;border-top:1px solid color-mix(in srgb,var(--hero-ink) 14%,transparent)}
+.stops li::before{counter-increment:st;content:counter(st);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;background:color-mix(in srgb,var(--hero-ink) 14%,transparent)}
+.stops li.pu::before{background:var(--hero-ink);color:var(--hero)}
+.stops li.dv::before{background:var(--accent);color:var(--on-accent)}
+.stops .sn{font-weight:600}.stops .ss{color:var(--hero-muted);font-size:.83rem}
+.stops a{color:var(--hero-ink);font-size:.85rem;border:1px solid color-mix(in srgb,var(--hero-ink) 30%,transparent);border-radius:9px;padding:5px 10px;text-decoration:none;white-space:nowrap}
+.routecard .btn.line{background:transparent;color:var(--hero-ink);border:1px solid color-mix(in srgb,var(--hero-ink) 35%,transparent);font-weight:500}
+.routecard .k{color:var(--hero-muted)}
+/* modal */
+.overlay{position:fixed;inset:0;background:rgba(6,12,30,.62);display:grid;place-items:center;padding:16px;z-index:20;overflow:auto}
+.sheet{background:var(--surface);border-radius:var(--r);padding:18px;max-width:440px;width:100%}
+.cam{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:1/1}
+.cam video{width:100%;height:100%;object-fit:cover;display:block}
+.cam .frame{position:absolute;inset:18%;border:3px solid var(--accent);border-radius:16px;box-shadow:0 0 0 999px rgba(0,0,0,.35)}
+.scanres{border-radius:var(--rs);padding:14px 16px;margin-top:12px}
+.scanres.good{background:var(--ok-bg);color:var(--ok)}.scanres.bad{background:#FDE7E7;color:var(--err)}
+.scanres .big{font-size:1.2rem;font-weight:700}
+.label{background:#fff;color:#111;border:2px solid #111;border-radius:8px;padding:14px;font-size:.9rem}
+.label .lh{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #111;padding-bottom:8px;margin-bottom:10px;font-weight:700}
+.label .lh .no{font-size:1.3rem;direction:ltr}
+.label .qr{display:grid;place-items:center;padding:6px 0 10px}
+.label .qr img,.label .qr canvas{width:170px!important;height:170px!important}
+.label .blk{border-top:1px solid #999;padding:8px 0}.label .blk .k{color:#555}
+.label .cod{border:2px solid #111;text-align:center;padding:8px;font-weight:700;font-size:1.05rem;margin-top:6px}
+
+.hero .micro{margin-top:12px;color:var(--hero-muted);font-size:.88rem}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--accent-ink);font-size:1.3rem;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin:10px 0 0;color:var(--muted);max-width:60ch}
+footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.flogo{display:flex;align-items:center;gap:8px;color:var(--ink)}
+.podthumb{border:1px solid var(--line);border-radius:8px;padding:0;width:52px;height:52px;overflow:hidden;cursor:pointer;background:none}
+.podthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.stars{display:flex;justify-content:center;gap:6px;direction:ltr}
+.stars button{background:none;border:0;font-size:2.2rem;line-height:1;color:var(--line);cursor:pointer;padding:2px}
+.stars button.on{color:var(--accent)}
+.stars-s{color:var(--accent);letter-spacing:1px;direction:ltr;display:inline-block}.stars-s span{color:var(--line)}
+.bar{display:grid;grid-template-columns:minmax(90px,30%) 1fr 40px;gap:10px;align-items:center;padding:6px 0;font-size:.92rem}
+.bar div{height:8px;background:var(--soft);border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--accent);border-radius:8px}
+.bar b{text-align:end;font-weight:600}
+.split{height:12px;border-radius:12px;background:var(--accent);overflow:hidden}.split i{display:block;height:100%;background:var(--primary)}
+
+.loadlist{border:1px solid var(--line);border-radius:var(--rs);padding:10px 14px;margin:0 0 14px}
+.loadlist summary{cursor:pointer;font-weight:600}
+.loadlist ol{margin:6px 0 0;padding-inline-start:22px;max-height:260px;overflow:auto}
+.loadlist li{display:flex;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line);font-size:.9rem}
+.loadlist li span:nth-child(2){flex:1}
+details.ord{background:var(--surface);border:1px solid var(--line);border-radius:var(--rs);margin-bottom:8px}
+details.ord>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:11px 14px}
+details.ord>summary::-webkit-details-marker{display:none}
+details.ord .sq{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+details.ord .on{flex:1;min-width:0;display:flex;flex-direction:column}
+details.ord .on .k{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+details.ord[open]>summary{border-bottom:1px solid var(--line)}
+details.ord>.card{border:0;box-shadow:none;margin:0}
+.labels{display:grid;gap:14px}
+@media print{.labels .label{break-inside:avoid;page-break-inside:avoid;margin-bottom:12px}}
+@media print{body.printing>*:not(#modal){display:none!important}body.printing .overlay{position:static;background:none}body.printing .noprint{display:none!important}}
+@media (prefers-reduced-motion:no-preference){.pop{animation:pop .3s ease-out}@keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <button class="logo" data-act="home" type="button" aria-label="Wasla">
+      <span class="mark" id="logoMark"></span>
+      <span id="brand"></span>
+    </button>
+    <div class="spacer"></div>
+    <span class="who" id="who"></span>
+    <button class="hbtn" id="langBtn" data-act="lang" type="button"></button>
+    <button class="btn primary sm" id="authBtn" type="button"></button>
+  </div>
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+</header>
+<main id="app"></main>
+<div id="modal"></div>
+<script>
+const EM_EN=["Dubai","Abu Dhabi","Sharjah","Ajman","Umm Al Quwain","Ras Al Khaimah","Fujairah"];
+const EM_AR=["دبي","أبوظبي","الشارقة","عجمان","أم القيوين","رأس الخيمة","الفجيرة"];
+const EM_C=[[25.2048,55.2708],[24.4539,54.3773],[25.3463,55.4209],[25.4052,55.5136],[25.5647,55.5552],[25.8007,55.9762],[25.1288,56.3265]];
+const AREAS=[
+ [["Downtown Dubai","وسط مدينة دبي",25.1972,55.2744],["Business Bay","الخليج التجاري",25.186,55.265],["Dubai Marina","دبي مارينا",25.0805,55.1403],["JLT","أبراج بحيرات جميرا",25.0693,55.1413],["JBR","جميرا بيتش ريزيدنس",25.078,55.134],["JVC","قرية جميرا الدائرية",25.06,55.21],["Al Barsha","البرشاء",25.113,55.2],["Deira","ديرة",25.271,55.308],["Bur Dubai","بر دبي",25.253,55.297],["Al Karama","الكرامة",25.244,55.304],["Jumeirah","جميرا",25.205,55.24],["Al Qusais","القصيص",25.28,55.38],["Mirdif","مردف",25.22,55.42],["International City","المدينة العالمية",25.164,55.409],["Silicon Oasis","واحة دبي للسيليكون",25.12,55.38],["Al Nahda","النهدة",25.29,55.37],["DIFC","مركز دبي المالي",25.213,55.282],["Palm Jumeirah","نخلة جميرا",25.1124,55.139],["Arabian Ranches","المرابع العربية",25.055,55.27],["Dubai Hills","دبي هيلز",25.11,55.245],["Al Quoz","القوز",25.14,55.23],["Jebel Ali","جبل علي",25.0,55.08],["Discovery Gardens","ديسكفري جاردنز",25.04,55.14],["Motor City","موتور سيتي",25.045,55.235],["Al Satwa","السطوة",25.225,55.275],["Oud Metha","عود ميثاء",25.235,55.315],["Al Garhoud","القرهود",25.244,55.35],["Muhaisnah","محيصنة",25.27,55.415],["Al Warqa","الورقاء",25.19,55.42]],
+ [["Al Reem Island","جزيرة الريم",24.499,54.404],["Khalifa City","مدينة خليفة",24.42,54.58],["Al Khalidiyah","الخالدية",24.47,54.35],["Corniche","الكورنيش",24.475,54.345],["Mussafah","مصفح",24.35,54.5],["Yas Island","جزيرة ياس",24.49,54.6],["Al Reef","الريف",24.45,54.67],["MBZ City","مدينة محمد بن زايد",24.34,54.55],["Al Raha Beach","شاطئ الراحة",24.455,54.61],["Al Mushrif","المشرف",24.445,54.39],["Al Ain","العين",24.2075,55.7447]],
+ [["Al Majaz","المجاز",25.325,55.385],["Al Nahda","النهدة",25.3,55.37],["Al Taawun","التعاون",25.31,55.37],["Al Khan","الخان",25.315,55.36],["Muwaileh","مويلح",25.3,55.46],["Al Qasimia","القاسمية",25.34,55.395],["Rolla","الرولة",25.355,55.39],["University City","المدينة الجامعية",25.29,55.475]],
+ [["Al Nuaimia","النعيمية",25.39,55.46],["Al Rashidiya","الراشدية",25.4,55.44],["Al Jurf","الجرف",25.41,55.49],["Ajman Corniche","كورنيش عجمان",25.415,55.44]],
+ [["UAQ City","مدينة أم القيوين",25.5647,55.5552]],
+ [["Al Nakheel","النخيل",25.79,55.95],["Al Hamra","الحمرا",25.69,55.78],["Al Dhait","الظيت",25.74,55.97]],
+ [["Fujairah City","مدينة الفجيرة",25.1288,56.3265],["Dibba","دبا",25.59,56.26]]
+];
+const IC={
+ qr:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>',
+ lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14.5v2.5"/></svg>',
+ card:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M2.5 10h19M6.5 15h4"/></svg>',
+ wallet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7a2 2 0 0 1 2-2h13v4"/><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M16 13.5h2"/></svg>',
+ link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>',
+ route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7.5a3.5 3.5 0 0 0 0-7h-7a3.5 3.5 0 0 1 0-7H16"/></svg>',
+ pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+ scan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"/></svg>'
+};
+const T={
+ar:{brand:"وصلة",lang:"English",login:"دخول",logout:"خروج",
+ kicker:"شريك التوصيل للبيع أونلاين بالإمارات",heroH:"إنت بيع، والتوصيل علينا.",heroP:"من محلك لباب زبونك بكل الإمارات السبع. ابعت رابط، الزبون بيعبّي عنوانه وبيدفع، وإحنا منستلم ومنسلّم ومنحصّل.",
+ heroCta:"سجّل محلك",heroCta2:"عندي حساب",f1:"٧ إمارات",f1d:"تغطية كاملة",f2:"كاش أو بطاقة",f2d:"الزبون بيختار",f3:"تتبّع مباشر",f3d:"من المحل للباب",
+ dcFrom:"Layla Boutique، الكرامة",dcTo:"الخليج التجاري، دبي",dcStatus:"بالطريق",dcEta:"السائق سامر · المحطة ٣ من ٥",dc2:"الكاش بيتحوّل إلك",dc2b:"١٬٢٤٠ درهم",
+ prH:"ليش وصلة؟",
+ p1:"إنت بيع، وإحنا منوصّل.",p1d:"ركّز على زباينك ومنتجاتك. الاستلام من محلك والتوصيل والتحصيل كله علينا.",
+ p2:"ولا طلب بيضيع.",p2d:"كل طلب إله رمز استلام وتتبّع من المحل للباب. الطلب ما بيتسكّر إلا بإيد الزبون.",
+ p3:"مصاريك بتوصلك.",p3d:"منحصّل الكاش من زبونك ومنحوّله إلك، وحسابك واضح قدامك بأي وقت.",
+ p4:"أسرع طريق، أقل بنزين.",p4d:"السائق بيعمل سكان للطلبيات، والمسار بيترتّب لحاله على خرائط Google. توصيل أسرع وتكلفة أقل.",
+ howH:"من الرسالة للباب بـ٣ خطوات",howP:"ما في تطبيق لازم ينزّله الزبون، وما في نماذج طويلة. رابط واحد بيجمع كل شي.",
+ s1:"حدد الطلبية والسعر",s1d:"بعد ما تتفق مع زبونك على إنستغرام أو واتساب، اعمل رابط بثواني وابعته.",
+ s2:"الزبون بيعبّي وبيدفع",s2d:"بيحدد عنوانه أو بيشارك موقعه، وبيدفع كاش عند الاستلام أو بالبطاقة.",
+ s3:"منستلم ومنسلّم",s3d:"بتطبع بوليصة الشحن مع QR، السائق بيعمل سكان وبيستلم، وزبونك بيتابع لحظة بلحظة.",
+ featH:"كل شي بتحتاجه لتوصّل باحتراف",
+ ft1:"رابط طلب جاهز",ft1d:"الطلبية والسعر محددين سلف. الزبون بس بيعبّي عنوانه.",
+ ft2:"كاش أو بطاقة",ft2d:"الزبون بيختار كيف يدفع، والحساب بيتظبط لحاله.",
+ ft3:"بوليصة شحن مع QR",ft3d:"المرسل والمرسل إليه والعنوان والمبلغ، جاهزة للطباعة.",
+ ft4:"رمز استلام",ft4d:"٤ أرقام مع الزبون. بدونها الطلب ما بيتسلّم.",
+ ft5:"مسار ذكي للسائق",ft5d:"سكان للQR، والمحطات بتترتب لأقصر طريق وبتنفتح على خرائط Google.",
+ ft6:"حساب شفاف",ft6d:"بتعرف قديش إلك وقديش عليك، طلب بطلب.",
+ covH:"منوصّل لكل الإمارات السبع",covP:"من دبي لأبوظبي للفجيرة، وين ما كان زبونك.",
+ closeH:"زباينك مستنيين.",closeP:"ابعتلهم أول رابط اليوم.",closeBtn:"سجّل محلك",foot:"وصلة للتوصيل، الإمارات العربية المتحدة",
+ authH:"تسجيل الدخول",authP:"ادخل برقمك والرمز السري. كل حساب بيشوف الشي اللي بيخصّه بس.",phone:"رقم الموبايل",pin:"الرمز السري",enter:"دخول",badLogin:"الرقم أو الرمز غير صحيح.",
+ demoTry:"أو جرّب حساب تجريبي",newShop:"محل جديد؟ سجّل هون",
+ regH:"سجّل محلك",regP:"بدقيقة وحدة بتصير جاهز تبعت روابط.",shopName:"اسم المحل أو الصفحة",sphone:"رقم واتساب المحل",shopAddr:"عنوان الاستلام بالتفصيل",registerShop:"سجّل وادخل",haveAcct:"عندي حساب",phoneTaken:"هالرقم مسجّل من قبل.",
+ rOwner:"صاحب الموقع",rSeller:"بائع",rDriver:"سائق",
+ tNewLink:"رابط جديد",tMyOrders:"طلباتي",tBalance:"حسابي",tOrders:"الطلبات",tDrivers:"السائقين",tSellers:"المحلات",
+ sellerTitle:"رابط طلب جديد",sellerLead:"حدد الطلبية والسعر اللي اتفقت عليه مع الزبون، وابعتله الرابط.",
+ item:"الطلبية",itemPh:"مثال: فستان أسود مقاس M × 1، شنتة بيج × 1",price:"السعر المتفق عليه",fee:"أجرة التوصيل",feePayer:"مين بيدفع أجرة التوصيل؟",
+ payCustomer:"الزبون",payCustomerD:"بتنضاف عالمجموع",paySeller:"أنا (البائع)",paySellerD:"توصيل مجاني للزبون",
+ note:"ملاحظة للزبون",optional:"(اختياري)",createLink:"أنشئ الرابط",linkReady:"الرابط جاهز",linkReadyLead:"الرابط لطلب واحد، وبعد ما يعبّيه الزبون بيصير صفحة تتبّع.",
+ copy:"نسخ",copied:"تم النسخ",shareWa:"ابعت على واتساب",preview:"شوف كزبون",previewNote:"هيك بيشوف الزبون الرابط.",
+ noSellerOrders:"ما في طلبات لسا. أنشئ رابط وابعته لزبونك.",labelBtn:"بوليصة الشحن",
+ custLead:"راجع طلبيتك وعبّي معلومات التوصيل.",item_:"الطلبية",price_:"السعر",fee_:"التوصيل",free:"مجاني",total:"المجموع",
+ yourDetails:"معلومات التوصيل",cname:"الاسم",cphone:"رقم الهاتف",emirate:"الإمارة",area:"المنطقة",areaPh:"ابدأ اكتب اسم المنطقة",
+ addr:"العنوان بالتفصيل",addrPh:"اسم البناية، الشارع، رقم الشقة، علامة مميزة",map:"أو الصق رابط موقعك من خرائط Google",slot:"وقت التوصيل المفضّل",
+ shareLoc:"حدد موقعي الحالي",locOk:"✓ تم تحديد الموقع بدقة",locFail:"ما قدرنا نحدد الموقع. الصق رابط الموقع أو اكتب العنوان.",shopLoc:"حدد موقع المحل",
+ slots:["أي وقت","الصبح (9–12)","الظهر (12–5)","المسا (5–10)"],emirates:EM_AR,
+ payment:"طريقة الدفع",cod:"كاش عند الاستلام",codD:"بتدفع للسائق",online:"دفع أونلاين",onlineD:"بالبطاقة، مباشرة للبائع",card:"رقم البطاقة",exp:"الانتهاء",cvv:"CVV",
+ demoPay:"دفع تجريبي، ما رح ينخصم أي مبلغ.",confirmCod:"أكّد الطلب",payNow:"ادفع",paying:"جاري الدفع…",
+ req:"عبّي الخانات المطلوبة.",badPhone:"اكتب رقم هاتف صحيح.",badCard:"تأكد من معلومات البطاقة.",badLink:"هذا الرابط غير صالح. اطلب رابط جديد من البائع.",
+ trackTitle:"تم استلام طلبك",orderNo:"رقم الطلب",otpLabel:"رمز الاستلام",otpHint:"اعطِ هالرمز للسائق لما يسلّمك الطلب.",msgSeller:"راسل البائع",
+ paidTag:"مدفوع أونلاين",codTag:"كاش عند الاستلام",
+ st_new:"بانتظار سائق",st_assigned:"تم تعيين سائق",st_picked:"بالطريق",st_delivered:"تم التوصيل",
+ tr_new:"استلمنا طلبك",tr_assigned:"السائق رايح يستلم من المحل",tr_picked:"الطلب بالطريق إليك",tr_delivered:"وصل الطلب",
+ kNew:"بانتظار سائق",kActive:"قيد التوصيل",kDone:"تم توصيلها",kCash:"مع السائقين",
+ autoAssign:"وزّع تلقائياً",autoDone:"تم توزيع {n} طلب.",noneToAssign:"ما في طلبات بانتظار سائق.",noDrivers:"ما في سائق متاح هلأ.",
+ assignTo:"السائق",pickDriver:"اختر سائق",from:"الاستلام من",to:"التسليم إلى",all:"الكل",
+ driverName:"اسم السائق",driverPhone:"رقم السائق",zones:"مناطق التوصيل",allEm:"كل الإمارات",addDriver:"أضف سائق",
+ online_:"متاح",offline:"غير متاح",activeN:"طلبات نشطة",cashHeld:"معه",settle:"استلمت منه",ordersN:"طلبات",
+ howTitle:"كيف بيتوزع الطلب؟",howText:"التوزيع التلقائي بيعطي كل طلب لسائق:",
+ how1:"متاح هلأ وبيغطي إمارة الزبون (وإذا ما في، لأي سائق متاح)،",how2:"رايح يستلم من نفس المحل إذا في (مشوار واحد بدل تنين)،",how3:"وإلا الأقل طلبات نشطة.",how4:"والسائق كمان بيقدر ياخد الطلب بسكان للQR وقت الاستلام.",
+ resetDemo:"إعادة ضبط البيانات التجريبية",
+ driverTitle:"مسار اليوم",myCash:"الكاش معك",doneToday:"سلّمت",
+ scanBtn:"امسح QR الطلبية",scanH:"امسح الـQR عالبوليصة",scanHint:"وجّه الكاميرا عالـQR. الطلب بينضاف لمسارك وبيتسجّل إنك استلمته.",
+ camFail:"الكاميرا مش متاحة هون. صوّر الملصق أو اكتب رقم الطلب.",photoScan:"صوّر الملصق",typeNo:"أو اكتب رقم الطلب",add:"أضف",
+ scanOk:"انضاف لمسارك",scanAlready:"هالطلب بمسارك من قبل.",scanOther:"هالطلب مع سائق تاني.",scanDone:"هالطلب توصّل من قبل.",scanNone:"ما لقينا طلب بهالرقم.",scanNoQR:"ما قدرنا نقرا الـQR. جرّب صورة أوضح.",
+ collectNow:"حصّل من البائع هلأ",scanMore:"امسح غيره",close:"سكّر",
+ routeH:"المسار المقترح",stopsN:"محطات",km:"كم",routeOpen:"افتح المسار بخرائط Google",useMyLoc:"ابدأ من موقعي",myLocOk:"✓ من موقعك الحالي",
+ routeNote:"المحطات مرتبة لأقصر طريق: كل استلام قبل تسليمه، ومن الأقرب للأقرب.",routeMore:"خرائط Google بتفتح أول {n} محطات، والباقي بعدين.",
+ pu:"استلام",dv:"تسليم",nav:"روح",noStops:"ما عندك محطات هلأ. امسح QR طلبية لتبدأ.",approx:"موقع تقريبي",
+ pickupBtn:"استلمت الطلب",pickupBtnFee:"استلمت + {x} من البائع",enterOtp:"رمز الاستلام",deliver:"سلّمت",deliverCash:"سلّمت وحصّلت {x}",wrongOtp:"الرمز غلط. اطلبه من الزبون.",
+ waCustomer:"واتساب الزبون",waSeller:"واتساب البائع",openMap:"افتح الخريطة",call:"اتصال",
+ m_fromSeller:"حصّل أجرة التوصيل من البائع",m_fromSellerD:"الزبون دفع أونلاين للبائع",
+ m_fromCust:"حصّل من الزبون",m_fromCustD_cod:"كاش: السعر",m_fromCustD_codFee:"كاش: السعر + التوصيل",
+ m_custPaid:"الزبون دافع أونلاين",m_custPaidD:"لا تحصّل شي من الزبون",
+ m_sPaidOnline:"الزبون دفعلك أونلاين",m_sFee:"أجرة التوصيل: السائق بيحصّلها منك وقت الاستلام",
+ m_payout:"مستحقك من الشركة",m_payoutD:"بعد خصم أجرة التوصيل",m_payoutD2:"المبلغ كامل",
+ labelTitle:"بوليصة شحن",sender:"المرسل",recipient:"المرسل إليه",print:"اطبع",codAmt:"تحصيل كاش من الزبون",paidFull:"مدفوع، لا تحصيل",otpShort:"رمز",
+ balTitle:"حسابي",balLead:"طلبات الكاش: منحصّل من الزبون ومنحوّلك الباقي بعد أجرة التوصيل. طلبات الأونلاين: المبلغ بيوصلك مباشرة، وبتدفع أجرة التوصيل للسائق وقت الاستلام.",
+ balDue:"مستحقك عند الشركة",balOnline:"وصلك أونلاين",balFees:"أجرة توصيل دفعتها للسائق",balPaid:"تم تحويله إلك",
+ dueN:"مستحق",paySellerBtn:"حوّلتله",sellersEmpty:"ما في محلات مسجّلة.",
+ waNew:"طلب جديد"},
+en:{brand:"Wasla",lang:"العربية",login:"Sign in",logout:"Sign out",
+ kicker:"The delivery partner for online sellers in the UAE",heroH:"You sell. We deliver.",heroP:"From your shop to your customer's door, across all seven emirates. Send a link, the customer adds their address and pays, and we pick up, deliver and collect.",
+ heroCta:"Register your shop",heroCta2:"I have an account",f1:"7 emirates",f1d:"full coverage",f2:"Cash or card",f2d:"customer's choice",f3:"Live tracking",f3d:"shop to door",
+ dcFrom:"Layla Boutique, Al Karama",dcTo:"Business Bay, Dubai",dcStatus:"On the way",dcEta:"Driver Samer · stop 3 of 5",dc2:"Cash transferred to you",dc2b:"AED 1,240",
+ prH:"Why Wasla?",
+ p1:"You sell. We deliver.",p1d:"Focus on your customers and products. Pickup from your shop, delivery and cash collection are on us.",
+ p2:"No order gets lost.",p2d:"Every order has a delivery code and tracking from shop to door. It only closes in the customer's hands.",
+ p3:"Your money reaches you.",p3d:"We collect cash from your customers and transfer it to you, with a clear balance any time.",
+ p4:"Shortest route, less fuel.",p4d:"Drivers scan the parcels and the route orders itself in Google Maps. Faster delivery, lower cost.",
+ howH:"From message to door in 3 steps",howP:"No app for the customer to install, no long forms. One link holds everything.",
+ s1:"Set the items and price",s1d:"After agreeing with your customer on Instagram or WhatsApp, create a link in seconds and send it.",
+ s2:"The customer fills in and pays",s2d:"They add their address or share their location, and pay cash on delivery or by card.",
+ s3:"We pick up and deliver",s3d:"Print the QR shipping label, the driver scans it at pickup, and your customer follows every step.",
+ featH:"Everything you need to deliver like a pro",
+ ft1:"Ready order link",ft1d:"Items and price set in advance. The customer just adds their address.",
+ ft2:"Cash or card",ft2d:"The customer chooses how to pay, and the accounting sorts itself out.",
+ ft3:"QR shipping label",ft3d:"Sender, recipient, address and amount — ready to print.",
+ ft4:"Delivery code",ft4d:"Four digits the customer holds. No code, no handover.",
+ ft5:"Smart driver route",ft5d:"Scan the QR, and stops are ordered into the shortest route and open in Google Maps.",
+ ft6:"Transparent balance",ft6d:"See what you're owed and what you owe, order by order.",
+ covH:"We deliver to all seven emirates",covP:"From Dubai to Abu Dhabi to Fujairah, wherever your customer is.",
+ closeH:"Your customers are waiting.",closeP:"Send them your first link today.",closeBtn:"Register your shop",foot:"Wasla Delivery, United Arab Emirates",
+ authH:"Sign in",authP:"Use your mobile number and PIN. Each account only sees what belongs to it.",phone:"Mobile number",pin:"PIN",enter:"Sign in",badLogin:"Wrong number or PIN.",
+ demoTry:"or try a demo account",newShop:"New shop? Register here",
+ regH:"Register your shop",regP:"You'll be sending links in a minute.",shopName:"Shop or page name",sphone:"Shop WhatsApp number",shopAddr:"Detailed pickup address",registerShop:"Register and sign in",haveAcct:"I have an account",phoneTaken:"This number is already registered.",
+ rOwner:"Owner",rSeller:"Seller",rDriver:"Driver",
+ tNewLink:"New link",tMyOrders:"My orders",tBalance:"Balance",tOrders:"Orders",tDrivers:"Drivers",tSellers:"Shops",
+ sellerTitle:"New order link",sellerLead:"Set the items and the price you agreed with the customer, then send the link.",
+ item:"Items",itemPh:"e.g. Black dress size M × 1, beige bag × 1",price:"Agreed price",fee:"Delivery fee",feePayer:"Who pays the delivery fee?",
+ payCustomer:"Customer",payCustomerD:"added to the total",paySeller:"Me (seller)",paySellerD:"free delivery for the customer",
+ note:"Note for the customer",optional:"(optional)",createLink:"Create link",linkReady:"Your link is ready",linkReadyLead:"Each link is for one order and becomes a tracking page once filled in.",
+ copy:"Copy",copied:"Copied",shareWa:"Send on WhatsApp",preview:"View as customer",previewNote:"This is what your customer sees.",
+ noSellerOrders:"No orders yet. Create a link and send it to a customer.",labelBtn:"Shipping label",
+ custLead:"Check your order and add delivery details.",item_:"Items",price_:"Price",fee_:"Delivery",free:"Free",total:"Total",
+ yourDetails:"Delivery details",cname:"Full name",cphone:"Phone number",emirate:"Emirate",area:"Area",areaPh:"Start typing your area",
+ addr:"Full address",addrPh:"Building, street, apartment, landmark",map:"Or paste your Google Maps location link",slot:"Preferred delivery time",
+ shareLoc:"Use my current location",locOk:"✓ Exact location set",locFail:"Couldn't get your location. Paste a map link or type the address.",shopLoc:"Set shop location",
+ slots:["Any time","Morning (9–12)","Afternoon (12–5)","Evening (5–10)"],emirates:EM_EN,
+ payment:"Payment method",cod:"Cash on delivery",codD:"pay the driver",online:"Pay online",onlineD:"by card, directly to the seller",card:"Card number",exp:"Expiry",cvv:"CVV",
+ demoPay:"Demo payment — nothing will be charged.",confirmCod:"Confirm order",payNow:"Pay",paying:"Processing…",
+ req:"Fill in the required fields.",badPhone:"Enter a valid phone number.",badCard:"Check your card details.",badLink:"This link isn't valid. Ask the seller for a new one.",
+ trackTitle:"Order received",orderNo:"Order number",otpLabel:"Delivery code",otpHint:"Give this code to the driver when you receive your order.",msgSeller:"Message the seller",
+ paidTag:"Paid online",codTag:"Cash on delivery",
+ st_new:"Waiting for driver",st_assigned:"Driver assigned",st_picked:"On the way",st_delivered:"Delivered",
+ tr_new:"Order received",tr_assigned:"Driver heading to the shop",tr_picked:"On the way to you",tr_delivered:"Delivered",
+ kNew:"Waiting for driver",kActive:"In delivery",kDone:"Delivered",kCash:"With drivers",
+ autoAssign:"Auto-assign",autoDone:"{n} orders assigned.",noneToAssign:"No orders waiting for a driver.",noDrivers:"No driver available right now.",
+ assignTo:"Driver",pickDriver:"Choose driver",from:"Pick up from",to:"Deliver to",all:"All",
+ driverName:"Driver name",driverPhone:"Driver phone",zones:"Delivery zones",allEm:"All emirates",addDriver:"Add driver",
+ online_:"Available",offline:"Off",activeN:"active orders",cashHeld:"Holding",settle:"Received",ordersN:"orders",
+ howTitle:"How orders get assigned",howText:"Auto-assign gives each order to a driver who is:",
+ how1:"available now and covers the customer's emirate (otherwise any available driver),",how2:"already picking up from the same shop, if any (one trip instead of two),",how3:"otherwise the one with the fewest active orders.",how4:"Drivers can also take an order by scanning its QR at pickup.",
+ resetDemo:"Reset demo data",
+ driverTitle:"Today's route",myCash:"Cash on you",doneToday:"Delivered",
+ scanBtn:"Scan parcel QR",scanH:"Scan the label QR",scanHint:"Point the camera at the QR. The order joins your route and is marked as picked up.",
+ camFail:"The camera isn't available here. Take a photo of the label or type the order number.",photoScan:"Photo of label",typeNo:"or type the order number",add:"Add",
+ scanOk:"added to your route",scanAlready:"This order is already on your route.",scanOther:"This order belongs to another driver.",scanDone:"This order was already delivered.",scanNone:"No order with that number.",scanNoQR:"Couldn't read the QR. Try a clearer photo.",
+ collectNow:"Collect from the seller now",scanMore:"Scan another",close:"Close",
+ routeH:"Suggested route",stopsN:"stops",km:"km",routeOpen:"Open route in Google Maps",useMyLoc:"Start from my location",myLocOk:"✓ From your current location",
+ routeNote:"Stops are ordered for the shortest route: every pickup before its drop-off, nearest first.",routeMore:"Google Maps opens the first {n} stops; the rest come after.",
+ pu:"Pickup",dv:"Drop-off",nav:"Go",noStops:"No stops yet. Scan a parcel QR to start.",approx:"approximate location",
+ pickupBtn:"Picked up",pickupBtnFee:"Picked up + {x} from seller",enterOtp:"Delivery code",deliver:"Delivered",deliverCash:"Delivered, collected {x}",wrongOtp:"Wrong code. Ask the customer for it.",
+ waCustomer:"WhatsApp customer",waSeller:"WhatsApp seller",openMap:"Open map",call:"Call",
+ m_fromSeller:"Collect delivery fee from seller",m_fromSellerD:"Customer paid the seller online",
+ m_fromCust:"Collect from customer",m_fromCustD_cod:"Cash: price",m_fromCustD_codFee:"Cash: price + delivery",
+ m_custPaid:"Customer paid online",m_custPaidD:"Collect nothing from the customer",
+ m_sPaidOnline:"Customer paid you online",m_sFee:"Delivery fee: the driver collects it from you at pickup",
+ m_payout:"We owe you",m_payoutD:"after the delivery fee",m_payoutD2:"full amount",
+ labelTitle:"Shipping label",sender:"Sender",recipient:"Recipient",print:"Print",codAmt:"Collect cash from customer",paidFull:"Paid, nothing to collect",otpShort:"Code",
+ balTitle:"Balance",balLead:"Cash orders: we collect from the customer and transfer the rest after the delivery fee. Online orders: the money reaches you directly, and you pay the delivery fee to the driver at pickup.",
+ balDue:"We owe you",balOnline:"Received online",balFees:"Delivery fees paid to drivers",balPaid:"Transferred to you",
+ dueN:"Due",paySellerBtn:"Transferred",sellersEmpty:"No shops registered.",
+ waNew:"New order"}
+};
+Object.assign(T.ar,{
+ heroP:"من محلك لباب زبونك بكل الإمارات السبع. ابعت رابط، الزبون بيعبّي عنوانه وبيدفع كاش أو تحويل، وإحنا منستلم ومنسلّم ومنسوّي حسابك كل يوم.",
+ f2:"كاش أو تحويل",f2d:"الزبون بيختار",dc2:"تسوية اليوم مع السائق",
+ p3:"حسابك بيتسكّر كل يوم.",p3d:"السائق بيسوّي معك حساب واحد آخر النهار: كاش طلباتك بيوصلك، وأجرة التوصيل بتنخصم تلقائياً.",
+ ft2:"كاش أو تحويل بنكي",ft2d:"الزبون بيحوّل لحسابك مباشرة، ومعلوماتك البنكية بتطلعله جاهزة وما بتتعدّل.",
+ ft6:"تسوية يومية واضحة",ft6d:"رقم واحد لكل يوم: قديش بيعطيك السائق أو قديش بتعطيه.",
+ s2d:"بيحدد عنوانه أو بيشارك موقعه، وبيدفع كاش عند الاستلام أو تحويل بنكي لحسابك.",
+ regBank:"معلومات حسابك البنكي",regBankD:"بتطلع للزبون لما يختار تحويل بنكي، وهو ما بيقدر يعدّلها.",holder:"اسم صاحب الحساب",bankName:"اسم البنك",iban:"IBAN",badIban:"الـIBAN لازم يبلش بـAE ويكون 23 خانة.",
+ sellerLead:"حدد الطلبية والسعر وأجرة التوصيل، وابعت الرابط للزبون. الأسعار بتطلعله ثابتة وما بتتعدّل.",
+ fee:"أجرة التوصيل",feeD:"بتنضاف تلقائياً على فاتورة الزبون",
+ fixedNote:"الأسعار محددة من المحل.",
+ online:"تحويل بنكي للبائع",onlineD:"من تطبيق البنك تبعك",
+ bankH:"حوّل المبلغ على هالحساب",amountSend:"المبلغ",ref:"اكتب بملاحظة التحويل",bankRO:"المعلومات من المحل وما بتتعدّل.",bankConfirm:"حوّلت المبلغ كامل",bankReq:"أكّد إنك حوّلت المبلغ.",
+ paidTag:"تحويل بنكي ✓",pendingTag:"تحويل بانتظار التأكيد",
+ tBank:"حسابي البنكي",tSettle:"التسوية",bankSave:"احفظ",bankSaved:"تم الحفظ.",
+ s_bankPending:"الزبون قال إنه حوّل {x}. تأكد من حسابك.",s_confirm:"وصلني التحويل",s_reject:"ما وصلني، خلّيه كاش",
+ s_bankOk:"وصلك تحويل بنكي",s_feeLater:"أجرة التوصيل {x} بتنخصم بتسوية آخر اليوم",s_cod:"إلك من الكاش",s_codD:"السائق بيعطيك ياه بالتسوية",
+ m_custPaid:"الزبون حوّل للبائع",m_custPaidD:"لا تحصّل شي من الزبون",m_pending:"التحويل لسا ما تأكّد",m_pendingD:"إذا ما أكّد البائع قبل التسليم، حصّل كاش",
+ m_fromCustD:"السعر + التوصيل",m_feeLater:"أجرة التوصيل {x} بتنحسب بتسوية البائع آخر اليوم",
+ deliverPending:"سلّمت وحصّلت {x} كاش",
+ setH:"تسوية آخر اليوم",setLead:"رقم واحد لكل محل: كاش طلباته اللي حصّلته، ناقص أجرة التوصيل عن طلبات التحويل.",
+ giveSeller:"اعطِ البائع",takeSeller:"حصّل من البائع",even:"متعادلين",
+ cashOrd:"{n} طلب كاش: إلك سعر البضاعة",bankOrd:"{n} طلب تحويل: عليك أجرة التوصيل",
+ settleBtn:"تمّت التسوية",nothingSettle:"ما في شي للتسوية هلأ.",toCompany:"سلّم للشركة (أجرة التوصيل)",
+ sSetLead:"كل يوم السائق بيسوّي معك حساب واحد: كاش طلباتك ناقص أجرة التوصيل عن طلبات التحويل.",
+ drvGives:"السائق {d} بيعطيك",youGive:"إنت بتعطي السائق {d}",settledTotal:"تمت تسويته لهلأ",
+ feesReady:"جاهز للشركة",awaitSellers:"بانتظار تسوية البائعين",received:"استلمت منه",
+ pendNet:"بالتسوية الجاية",toSellerN:"له",fromSellerN:"عليه",
+ m_ownerNet:"بتسوية البائع"
+});
+Object.assign(T.en,{
+ heroP:"From your shop to your customer's door, across all seven emirates. Send a link, the customer adds their address and pays cash or by bank transfer, and we pick up, deliver and settle with you every day.",
+ f2:"Cash or transfer",f2d:"customer's choice",dc2:"Today's settlement",
+ p3:"Your account closes every day.",p3d:"At the end of the day the driver settles one number with you: your cash orders come back to you, minus delivery fees.",
+ ft2:"Cash or bank transfer",ft2d:"Customers transfer straight to your account, and your bank details appear locked and ready.",
+ ft6:"Clear daily settlement",ft6d:"One number a day: what the driver gives you, or what you give the driver.",
+ s2d:"They add their address or share their location, and pay cash on delivery or by bank transfer to you.",
+ regBank:"Your bank account",regBankD:"Shown to the customer when they choose bank transfer. They can't change it.",holder:"Account holder name",bankName:"Bank name",iban:"IBAN",badIban:"The IBAN must start with AE and be 23 characters.",
+ sellerLead:"Set the items, price and delivery fee, then send the link. The customer sees fixed prices they can't change.",
+ fee:"Delivery fee",feeD:"added to the customer's invoice automatically",
+ fixedNote:"Prices set by the shop.",
+ online:"Bank transfer to seller",onlineD:"from your banking app",
+ bankH:"Transfer the amount to this account",amountSend:"Amount",ref:"Put in the transfer note",bankRO:"Details come from the shop and can't be changed.",bankConfirm:"I transferred the full amount",bankReq:"Confirm that you transferred the amount.",
+ paidTag:"Bank transfer ✓",pendingTag:"Transfer awaiting confirmation",
+ tBank:"Bank account",tSettle:"Settlement",bankSave:"Save",bankSaved:"Saved.",
+ s_bankPending:"The customer says they transferred {x}. Check your account.",s_confirm:"Transfer received",s_reject:"Not received, make it cash",
+ s_bankOk:"Bank transfer received",s_feeLater:"Delivery fee {x} is deducted in today's settlement",s_cod:"Yours from cash",s_codD:"the driver hands it over at settlement",
+ m_custPaid:"Customer paid the seller",m_custPaidD:"Collect nothing from the customer",m_pending:"Transfer not confirmed yet",m_pendingD:"If the seller doesn't confirm before handover, collect cash",
+ m_fromCustD:"price + delivery",m_feeLater:"Delivery fee {x} goes into the seller's end-of-day settlement",
+ deliverPending:"Delivered, collected {x} cash",
+ setH:"End-of-day settlement",setLead:"One number per shop: the cash you collected for their orders, minus delivery fees on transfer orders.",
+ giveSeller:"Give the seller",takeSeller:"Collect from the seller",even:"Even",
+ cashOrd:"{n} cash orders: goods price owed to them",bankOrd:"{n} transfer orders: delivery fees they owe",
+ settleBtn:"Settled",nothingSettle:"Nothing to settle right now.",toCompany:"Hand to the company (delivery fees)",
+ sSetLead:"Every day the driver settles one number with you: your cash orders minus delivery fees on transfer orders.",
+ drvGives:"Driver {d} gives you",youGive:"You give driver {d}",settledTotal:"Settled so far",
+ feesReady:"Ready for company",awaitSellers:"Awaiting seller settlement",received:"Received",
+ pendNet:"next settlement",toSellerN:"to them",fromSellerN:"from them",
+ m_ownerNet:"seller settlement"
+});
+T.ar={brand:"وصلة",lang:"English",login:"تسجيل الدخول",logout:"تسجيل الخروج",
+ kicker:"شريك التوصيل للتجارة الإلكترونية في الإمارات",heroH:"أنتَ تبيع، ونحن نوصِل.",heroP:"من متجرك إلى باب عميلك في الإمارات السبع. أرسل رابطاً، فيُدخل العميل عنوانه ويدفع نقداً أو إلكترونياً، ونتولّى نحن الاستلام والتوصيل والتحصيل، مع تسوية حسابك يومياً.",
+ heroCta:"سجّل متجرك",heroCta2:"لديّ حساب",f1:"٧ إمارات",f1d:"تغطية شاملة",f2:"نقداً أو إلكترونياً",f2d:"بحسب اختيار العميل",f3:"تتبّع مباشر",f3d:"من المتجر إلى الباب",
+ dcFrom:"Layla Boutique، الكرامة",dcTo:"الخليج التجاري، دبي",dcStatus:"في الطريق",dcEta:"السائق سامر · المحطة ٣ من ٥",dc2:"تسوية اليوم مع السائق",dc2b:"١٬٢٤٠ درهم",
+ prH:"لماذا وصلة؟",
+ p1:"أنتَ تبيع، ونحن نوصِل.",p1d:"ركّز على عملائك ومنتجاتك، ودع الاستلام من متجرك والتوصيل والتحصيل علينا.",
+ p2:"لا طلب يضيع.",p2d:"لكل طلب رمز استلام وتتبّع من المتجر حتى الباب، ولا يُغلق الطلب إلا بيد العميل.",
+ p3:"حسابك يُسوّى كل يوم.",p3d:"في نهاية اليوم يسوّي السائق معك مبلغاً واحداً: نقد طلباتك يصلك بعد خصم أجرة التوصيل تلقائياً.",
+ p4:"أقصر طريق، وأقل وقود.",p4d:"يمسح السائق رموز الطلبات، فيترتّب المسار تلقائياً على خرائط Google. توصيل أسرع وتكلفة أقل.",
+ howH:"من المحادثة إلى الباب في ثلاث خطوات",howP:"لا تطبيق يحتاج العميل إلى تثبيته، ولا نماذج طويلة. رابط واحد يجمع كل شيء.",
+ s1:"حدّد الطلب والسعر",s1d:"بعد الاتفاق مع عميلك عبر إنستغرام أو واتساب، أنشئ رابطاً في ثوانٍ وأرسله إليه.",
+ s2:"يُدخل العميل بياناته ويدفع",s2d:"يحدّد عنوانه أو يشارك موقعه، ويدفع نقداً عند الاستلام أو إلكترونياً مباشرةً إلى حسابك.",
+ s3:"نستلم ونوصِل",s3d:"اطبع بوليصة الشحن برمز QR، يمسحها السائق عند الاستلام، ويتابع عميلك الطلب لحظة بلحظة.",
+ featH:"كل ما تحتاجه لتوصيل احترافي",
+ ft1:"رابط طلب جاهز",ft1d:"الطلب والسعر محدّدان مسبقاً، والعميل يُدخل عنوانه فقط.",
+ ft2:"دفع إلكتروني مضمون",ft2d:"لا يصلك الطلب إلا بعد نجاح الدفع، والمبلغ يُحوَّل إلى حسابك مباشرةً.",
+ ft3:"بوليصة شحن برمز QR",ft3d:"بيانات المرسل والمرسل إليه والعنوان والمبلغ، جاهزة للطباعة.",
+ ft4:"رمز استلام",ft4d:"أربعة أرقام بحوزة العميل، ولا تسليم من دونها.",
+ ft5:"مسار ذكي للسائق",ft5d:"مسح رمز QR، وترتيب المحطات في أقصر طريق يُفتح على خرائط Google.",
+ ft6:"تسوية يومية واضحة",ft6d:"مبلغ واحد كل يوم: ما يسلّمك إياه السائق، أو ما تسلّمه أنت له.",
+ covH:"نوصِل إلى الإمارات السبع",covP:"من دبي إلى أبوظبي إلى الفجيرة، أينما كان عميلك.",
+ closeH:"عملاؤك بانتظارك.",closeP:"أرسل إليهم أول رابط اليوم.",closeBtn:"سجّل متجرك",foot:"وصلة للتوصيل، الإمارات العربية المتحدة",
+ authH:"تسجيل الدخول",authP:"أدخل رقم هاتفك والرمز السري. يرى كل حساب ما يخصّه فقط.",phone:"رقم الهاتف",pin:"الرمز السري",enter:"دخول",badLogin:"رقم الهاتف أو الرمز السري غير صحيح.",
+ demoTry:"أو جرّب حساباً تجريبياً",newShop:"متجر جديد؟ سجّل من هنا",
+ regH:"سجّل متجرك",regP:"خلال دقيقة واحدة تصبح جاهزاً لإرسال الروابط.",shopName:"اسم المتجر أو الصفحة",sphone:"رقم واتساب المتجر",shopAddr:"عنوان الاستلام بالتفصيل",registerShop:"سجّل وادخل",haveAcct:"لديّ حساب",phoneTaken:"هذا الرقم مسجّل مسبقاً.",
+ rOwner:"صاحب المنصّة",rSeller:"متجر",rDriver:"سائق",
+ tNewLink:"رابط جديد",tMyOrders:"طلباتي",tOrders:"الطلبات",tDrivers:"السائقون",tSellers:"المتاجر",tSettle:"التسوية",tBank:"حساب المدفوعات",
+ sellerTitle:"رابط طلب جديد",sellerLead:"حدّد الطلب والسعر وأجرة التوصيل، ثم أرسل الرابط إلى العميل. تظهر له الأسعار ثابتة ولا يمكنه تعديلها.",
+ item:"الطلب",itemPh:"مثال: فستان أسود مقاس M × 1، حقيبة بيج × 1",price:"السعر المتّفق عليه",fee:"أجرة التوصيل",feeD:"تُضاف تلقائياً إلى فاتورة العميل",
+ note:"ملاحظة للعميل",optional:"(اختياري)",createLink:"أنشئ الرابط",linkReady:"الرابط جاهز",linkReadyLead:"الرابط مخصّص لطلب واحد، ويتحوّل إلى صفحة تتبّع بعد أن يُكمله العميل.",
+ copy:"نسخ",copied:"تم النسخ",shareWa:"أرسل عبر واتساب",preview:"اعرض كعميل",previewNote:"هكذا يرى العميل الرابط.",
+ noSellerOrders:"لا توجد طلبات بعد. أنشئ رابطاً وأرسله إلى عميلك.",labelBtn:"بوليصة الشحن",
+ custLead:"راجع طلبك وأدخل بيانات التوصيل.",item_:"الطلب",price_:"السعر",fee_:"التوصيل",free:"مجاني",total:"الإجمالي",fixedNote:"الأسعار محدّدة من المتجر.",
+ yourDetails:"بيانات التوصيل",cname:"الاسم",cphone:"رقم الهاتف",emirate:"الإمارة",area:"المنطقة",areaPh:"ابدأ بكتابة اسم المنطقة",
+ addr:"العنوان بالتفصيل",addrPh:"اسم المبنى، الشارع، رقم الشقة، علامة مميّزة",map:"أو الصق رابط موقعك من خرائط Google",slot:"وقت التوصيل المفضّل",
+ shareLoc:"حدّد موقعي الحالي",locOk:"✓ تم تحديد الموقع بدقة",locFail:"تعذّر تحديد الموقع. الصق رابط الموقع أو اكتب العنوان.",shopLoc:"حدّد موقع المتجر",
+ slots:["في أي وقت","صباحاً (9–12)","ظهراً (12–5)","مساءً (5–10)"],emirates:EM_AR,
+ payment:"طريقة الدفع",cod:"نقداً عند الاستلام",codD:"تدفع للسائق",online:"دفع إلكتروني",onlineD:"Visa، Mastercard، Apple Pay",
+ card:"رقم البطاقة",exp:"تاريخ الانتهاء",cvv:"CVV",payTo:"يُحوَّل المبلغ مباشرةً إلى حساب المتجر",
+ payHint:"لن يُرسَل الطلب إلا بعد نجاح عملية الدفع.",demoPay:"دفع تجريبي لا يُخصم فيه أي مبلغ. لتجربة رفض البطاقة استخدم رقماً ينتهي بـ0002.",
+ confirmCod:"أكّد الطلب",payNow:"ادفع {x} وأكّد الطلب",paying:"جارٍ تنفيذ الدفع…",
+ payFail:"رُفضت عملية الدفع ولم يُرسَل الطلب. تحقّق من بيانات البطاقة أو اختر الدفع نقداً.",
+ req:"يُرجى تعبئة الحقول المطلوبة.",badPhone:"أدخل رقم هاتف صحيحاً.",badCard:"تحقّق من بيانات البطاقة.",badLink:"هذا الرابط غير صالح. اطلب رابطاً جديداً من المتجر.",
+ trackTitle:"تم استلام طلبك",orderNo:"رقم الطلب",otpLabel:"رمز الاستلام",otpHint:"أعطِ هذا الرمز للسائق عند تسليمك الطلب.",msgSeller:"راسل المتجر",
+ paidTag:"مدفوع إلكترونياً ✓",codTag:"نقداً عند الاستلام",
+ st_new:"بانتظار سائق",st_assigned:"تم تعيين سائق",st_picked:"في الطريق",st_delivered:"تم التوصيل",
+ tr_new:"استلمنا طلبك",tr_assigned:"السائق في طريقه إلى المتجر",tr_picked:"الطلب في الطريق إليك",tr_delivered:"وصل الطلب",
+ kNew:"بانتظار سائق",kActive:"قيد التوصيل",kDone:"تم توصيلها",kCash:"لدى السائقين",
+ autoAssign:"وزّع تلقائياً",autoDone:"تم توزيع {n} طلب.",noneToAssign:"لا توجد طلبات بانتظار سائق.",noDrivers:"لا يوجد سائق متاح حالياً.",
+ assignTo:"السائق",pickDriver:"اختر سائقاً",from:"الاستلام من",to:"التسليم إلى",all:"الكل",
+ driverName:"اسم السائق",driverPhone:"رقم السائق",zones:"مناطق التوصيل",allEm:"جميع الإمارات",addDriver:"أضف سائقاً",
+ online_:"متاح",offline:"غير متاح",activeN:"طلبات نشطة",cashHeld:"بحوزته",ordersN:"طلبات",
+ howTitle:"كيف تُوزَّع الطلبات؟",howText:"يُسند التوزيع التلقائي كل طلب إلى سائق:",
+ how1:"متاح الآن ويغطي إمارة العميل (وإلا فإلى أي سائق متاح)،",how2:"يستلم أصلاً من المتجر نفسه إن وُجد (مشوار واحد بدل اثنين)،",how3:"وإلا فالأقل طلبات نشطة.",how4:"ويمكن للسائق أيضاً أخذ الطلب بمسح رمز QR عند الاستلام.",
+ resetDemo:"إعادة ضبط البيانات التجريبية",
+ driverTitle:"مسار اليوم",myCash:"النقد بحوزتك",doneToday:"تم تسليمها",
+ scanBtn:"امسح رمز QR للطلب",scanH:"امسح رمز QR على البوليصة",scanHint:"وجّه الكاميرا نحو الرمز، فيُضاف الطلب إلى مسارك ويُسجَّل استلامك له.",
+ camFail:"الكاميرا غير متاحة هنا. التقط صورة للملصق أو اكتب رقم الطلب.",photoScan:"التقط صورة للملصق",typeNo:"أو اكتب رقم الطلب",add:"أضف",
+ scanOk:"أُضيف إلى مسارك",scanAlready:"هذا الطلب موجود في مسارك مسبقاً.",scanOther:"هذا الطلب مُسند إلى سائق آخر.",scanDone:"تم توصيل هذا الطلب مسبقاً.",scanNone:"لا يوجد طلب بهذا الرقم.",scanNoQR:"تعذّرت قراءة الرمز. جرّب صورة أوضح.",
+ scanMore:"امسح طلباً آخر",close:"إغلاق",
+ routeH:"المسار المقترح",stopsN:"محطات",km:"كم",routeOpen:"افتح المسار في خرائط Google",useMyLoc:"ابدأ من موقعي",myLocOk:"✓ من موقعك الحالي",
+ routeNote:"المحطات مرتّبة لأقصر طريق: كل استلام قبل تسليمه، ومن الأقرب إلى الأقرب.",routeMore:"تفتح خرائط Google أول {n} محطات، والبقية لاحقاً.",
+ pu:"استلام",dv:"تسليم",nav:"انطلق",noStops:"لا توجد محطات حالياً. امسح رمز QR لطلب كي تبدأ.",approx:"موقع تقريبي",
+ pickupBtn:"تم الاستلام",enterOtp:"رمز الاستلام",deliver:"تم التسليم",deliverCash:"تم التسليم وتحصيل {x}",wrongOtp:"الرمز غير صحيح. اطلبه من العميل.",
+ waCustomer:"واتساب العميل",waSeller:"واتساب المتجر",openMap:"افتح الخريطة",call:"اتصال",
+ m_fromCust:"حصّل من العميل نقداً",m_fromCustD:"السعر + أجرة التوصيل",m_custPaid:"مدفوع إلكترونياً",m_custPaidD:"لا تحصّل شيئاً من العميل",
+ m_feeLater:"أجرة التوصيل {x} تُحصَّل من المتجر في تسوية نهاية اليوم",m_ownerNet:"في تسوية المتجر",
+ s_paid:"دفع العميل إلكترونياً إلى حسابك",s_feeLater:"تُحتسَب أجرة التوصيل {x} في تسوية نهاية اليوم",s_cod:"مستحقك من النقد",s_codD:"يسلّمك إياه السائق في التسوية بعد خصم أجرة التوصيل",
+ labelTitle:"بوليصة شحن",sender:"المرسِل",recipient:"المرسَل إليه",print:"اطبع",codAmt:"تحصيل نقدي من العميل",paidFull:"مدفوع، لا تحصيل",otpShort:"الرمز",
+ sellersEmpty:"لا توجد متاجر مسجّلة.",waNew:"طلب جديد",
+ regBank:"حساب استلام المدفوعات",regBankD:"تُحوَّل إليه مدفوعات عملائك الإلكترونية مباشرةً.",holder:"اسم صاحب الحساب",bankName:"اسم البنك",iban:"IBAN",badIban:"يجب أن يبدأ رقم IBAN بـAE وأن يتكوّن من 23 خانة.",
+ bankSave:"احفظ",bankSaved:"تم الحفظ.",
+ setH:"تسوية نهاية اليوم",setLead:"مبلغ واحد لكل متجر: النقد الذي حصّلته من زبائنه بعد خصم أجرة التوصيل، ناقص أجرة التوصيل عن الطلبات المدفوعة إلكترونياً.",
+ stCash:"نقد حصّلته من زبائن المتجر ({n})",stCashFee:"تُخصم أجرة توصيل الطلبات النقدية",stOnlineFee:"أجرة توصيل الطلبات الإلكترونية ({n})",
+ stGive:"تُسلِّم للمتجر",stTake:"تُحصِّل من المتجر",stEven:"الحساب متعادل",
+ sumGive:"إجمالي ما تسلّمه للمتاجر",sumTake:"إجمالي ما تحصّله من المتاجر",toCompany:"تُسلِّم للشركة (أجرة التوصيل)",
+ settleBtn:"تمّت التسوية",nothingSettle:"لا يوجد ما يُسوّى حالياً.",
+ sSetLead:"في نهاية كل يوم يسوّي السائق معك مبلغاً واحداً.",
+ ssCash:"نقد حصّله السائق من زبائنك ({n})",ssCashFee:"أجرة توصيل الطلبات النقدية",ssOnlineFee:"أجرة توصيل طلباتك الإلكترونية ({n})",
+ drvGives:"يسلّمك السائق {d}",youGive:"تسلّم للسائق {d}",settledTotal:"ما تمّت تسويته حتى الآن",
+ feesReady:"جاهز للشركة",awaitSellers:"بانتظار تسوية المتاجر",received:"استلمت",
+ pendNet:"في التسوية القادمة",toSellerN:"له",fromSellerN:"عليه"};
+Object.assign(T.en,{
+ heroP:"From your shop to your customer's door, across all seven emirates. Send a link, the customer adds their address and pays cash or online, and we pick up, deliver and collect — with your account settled daily.",
+ f2:"Cash or online",dc2:"Today's settlement",
+ p3:"Settled every day.",p3d:"At day's end the driver settles one amount with you: your cash orders, with delivery fees deducted automatically.",
+ ft2:"Guaranteed online payment",ft2d:"An order only reaches you once payment succeeds, and the money goes straight to your account.",
+ ft6:"Clear daily settlement",ft6d:"One amount a day: what the driver hands you, or what you hand the driver.",
+ s2d:"They add their address or share their location, and pay cash on delivery or online, straight to your account.",
+ tBank:"Payout account",rOwner:"Platform owner",rSeller:"Shop",
+ online:"Pay online",onlineD:"Visa, Mastercard, Apple Pay",payTo:"Paid directly to the shop's account",
+ payHint:"The order is only sent once payment succeeds.",demoPay:"Demo payment — nothing is charged. To test a declined card, use a number ending in 0002.",
+ payNow:"Pay {x} and confirm",paying:"Processing payment…",payFail:"Payment was declined and the order was not sent. Check your card details or choose cash.",
+ paidTag:"Paid online ✓",m_fromCust:"Collect cash from customer",m_custPaid:"Paid online",m_custPaidD:"Collect nothing from the customer",
+ m_feeLater:"Delivery fee {x} is collected from the shop at end-of-day settlement",m_ownerNet:"in shop settlement",
+ s_paid:"Customer paid online to your account",s_feeLater:"Delivery fee {x} is counted in today's settlement",s_cod:"Yours from cash",s_codD:"the driver hands it over at settlement, minus the delivery fee",
+ regBank:"Payout account",regBankD:"Your customers' online payments go straight here.",
+ setH:"End-of-day settlement",setLead:"One amount per shop: the cash you collected for them minus delivery fees, minus delivery fees on online orders.",
+ stCash:"Cash collected from their customers ({n})",stCashFee:"Delivery fees on cash orders deducted",stOnlineFee:"Delivery fees on online orders ({n})",
+ stGive:"Hand to the shop",stTake:"Collect from the shop",stEven:"Even",sumGive:"Total to hand to shops",sumTake:"Total to collect from shops",toCompany:"Hand to the company (delivery fees)",
+ sSetLead:"At the end of each day the driver settles one amount with you.",
+ ssCash:"Cash the driver collected from your customers ({n})",ssCashFee:"Delivery fees on cash orders",ssOnlineFee:"Delivery fees on your online orders ({n})",
+ drvGives:"Driver {d} hands you",youGive:"You hand driver {d}",received:"Received"
+});
+Object.assign(T.ar,{
+ kicker:"شريك التوصيل للمتاجر الإلكترونية في الإمارات",
+ heroH:"كل طلب يصل.<br>وكل درهم يعود إليك.",
+ heroP:"أرسل لعميلك رابطاً واحداً، فيكتمل الطلب في دقيقة: عنوانه ودفعه وتوصيله إلى بابه في الإمارات السبع. وتتفرّغ أنت لما تتقنه: البيع.",
+ heroCta:"افتح حساب متجرك",heroCta2:"لديّ حساب",heroMicro:"التسجيل في دقيقة واحدة.",
+ dcEta:"السائق سامر · يصل خلال ٢٠ دقيقة",
+ prH:"صُمّمت وصلة لتبيع أكثر، وتقلق أقل.",
+ p1:"العميل المتردّد يشتري حين يسهل الطلب.",p1d:"رابط واحد، بلا تطبيق ولا تسجيل. كلّما قلّت الخطوات أمام عميلك، زادت الطلبات التي تكتمل.",
+ p2:"طلبٌ مدفوع، أو لا طلب.",p2d:"في الدفع الإلكتروني لا يصلك الطلب إلا بعد اكتمال الدفع. لا طلبات وهمية، ولا وعود معلّقة.",
+ p3:"لا طلب يضيع، ولا عذر يُقبل.",p3d:"رمز استلام وصورة توثّق كل تسليم، فلا يُغلق الطلب إلا بيد عميلك.",
+ p4:"مالك يعود إليك كل يوم.",p4d:"تسوية يومية بمبلغ واحد واضح، تُخصم منه أجرة التوصيل تلقائياً. بلا انتظار، وبلا حسابات معقّدة.",
+ howH:"من المحادثة إلى الباب في ثلاث خطوات",
+ featH:"أدوات تمنحك ثقة عملائك",
+ ft5:"إثبات التسليم",ft5d:"صورة عند التسليم مع رمز الاستلام، تحميك من أي نزاع.",
+ ft7:"تقييم بعد كل طلب",ft7d:"يقيّم عميلك تجربته، فتعرف ما يرضيه وتبني سمعة متجرك.",
+ faqH:"أسئلة يطرحها أصحاب المتاجر",
+ q1:"هل يحتاج عميلي إلى تنزيل تطبيق؟",a1:"لا. يفتح الرابط من واتساب أو إنستغرام ويُكمل طلبه مباشرةً من هاتفه.",
+ q2:"متى تصلني أموالي؟",a2:"المدفوعات الإلكترونية تصل إلى حسابك مباشرةً، ونقد الطلبات يسلّمك إياه السائق في تسوية نهاية اليوم بعد خصم أجرة التوصيل.",
+ q3:"من يحدّد أجرة التوصيل؟",a3:"أنت، مع سعر الطلب. تُضاف تلقائياً إلى فاتورة العميل ولا يمكنه تعديلها.",
+ q4:"ماذا لو رفض العميل الاستلام أو لم يُجب؟",a4:"يُسجِّل السائق السبب، ثم يُعاد المحاولة لاحقاً أو يُعاد الطلب إلى متجرك، وتتابع ذلك كله من حسابك.",
+ q5:"هل تغطّون جميع الإمارات؟",a5:"نعم، نوصِل إلى الإمارات السبع.",
+ closeH:"عملاؤك جاهزون للشراء.",closeP:"اجعل الطريق إليهم أقصر، وابدأ بأول رابط اليوم.",closeBtn:"افتح حساب متجرك",
+ st_returned:"أُعيد إلى المتجر",tr_returned:"أُعيد الطلب إلى المتجر",
+ failBtn:"تعذّر التسليم",failH:"سبب تعذّر التسليم",failR:["لم يُجب العميل","رفض العميل الاستلام","العنوان غير صحيح","طلب العميل التأجيل"],
+ failRetry:"أعِد المحاولة لاحقاً",failReturn:"أرجِع الطلب إلى المتجر",attempts:"محاولات",lastFail:"آخر محاولة",
+ onWay:"أبلغ العميل أنك في الطريق",onWayMsg:"مرحباً {n}، أنا سائق وصلة وفي طريقي إليك بطلبك رقم {o} من {s}. يُرجى تجهيز رمز الاستلام.",
+ podBtn:"صورة التسليم",podOk:"✓ أُرفقت الصورة",podView:"إثبات التسليم",
+ rateH:"كيف كانت تجربتك؟",rateP:"رأيك يساعد المتجر على خدمتك بشكل أفضل.",rateC:"تعليق (اختياري)",rateSend:"أرسل التقييم",rateThanks:"شكراً لك على تقييمك.",
+ tPerf:"الأداء",pfOrders:"إجمالي الطلبات",pfFees:"إيرادات التوصيل",pfSuccess:"نسبة التسليم الناجح",pfRating:"متوسط التقييم",
+ pfPay:"طريقة الدفع",pfByEm:"الطلبات حسب الإمارة",pfTop:"أكثر المتاجر طلباً",pfNone:"—",ratingN:"تقييم"
+});
+Object.assign(T.en,{
+ kicker:"The delivery partner for online shops in the UAE",
+ heroH:"Every order arrives.<br>Every dirham comes back to you.",
+ heroP:"Send your customer one link and the order is complete in a minute: address, payment and delivery to their door across all seven emirates. You focus on what you do best: selling.",
+ heroCta:"Open your shop account",heroMicro:"Sign-up takes one minute.",dcEta:"Driver Samer · arriving in 20 min",
+ prH:"Built so you sell more and worry less.",
+ p1:"Hesitant customers buy when ordering is easy.",p1d:"One link, no app, no sign-up. The fewer steps in front of your customer, the more orders get completed.",
+ p2:"Paid order, or no order.",p2d:"With online payment, an order only reaches you once payment is complete. No fake orders, no empty promises.",
+ p3:"No lost orders. No excuses.",p3d:"A delivery code and a photo document every handover, so an order only closes in your customer's hands.",
+ p4:"Your money back every day.",p4d:"One clear daily settlement with delivery fees deducted automatically. No waiting, no complicated maths.",
+ featH:"Tools that earn your customers' trust",
+ ft5:"Proof of delivery",ft5d:"A photo at handover plus the delivery code protects you from disputes.",
+ ft7:"Rating after every order",ft7d:"Customers rate their experience, so you learn what pleases them and build your reputation.",
+ faqH:"Questions shop owners ask",
+ q1:"Does my customer need to install an app?",a1:"No. They open the link from WhatsApp or Instagram and complete the order on their phone.",
+ q2:"When do I get my money?",a2:"Online payments go straight to your account. Cash is handed to you at the daily settlement, minus delivery fees.",
+ q3:"Who sets the delivery fee?",a3:"You do, along with the price. It's added to the customer's invoice automatically and they can't change it.",
+ q4:"What if the customer refuses or doesn't answer?",a4:"The driver records the reason, then retries later or returns the order to your shop — all visible in your account.",
+ q5:"Do you cover every emirate?",a5:"Yes, all seven.",
+ closeH:"Your customers are ready to buy.",closeP:"Shorten the road to them — send your first link today.",closeBtn:"Open your shop account",
+ st_returned:"Returned to shop",tr_returned:"Order returned to the shop",
+ failBtn:"Couldn't deliver",failH:"Why couldn't you deliver?",failR:["Customer didn't answer","Customer refused","Wrong address","Customer asked to postpone"],
+ failRetry:"Retry later",failReturn:"Return to shop",attempts:"attempts",lastFail:"Last attempt",
+ onWay:"Tell customer you're on the way",onWayMsg:"Hello {n}, I'm your Wasla driver on the way with order {o} from {s}. Please have your delivery code ready.",
+ podBtn:"Delivery photo",podOk:"✓ Photo attached",podView:"Proof of delivery",
+ rateH:"How was your experience?",rateP:"Your feedback helps the shop serve you better.",rateC:"Comment (optional)",rateSend:"Send rating",rateThanks:"Thank you for your rating.",
+ tPerf:"Performance",pfOrders:"Total orders",pfFees:"Delivery revenue",pfSuccess:"Successful delivery rate",pfRating:"Average rating",
+ pfPay:"Payment method",pfByEm:"Orders by emirate",pfTop:"Top shops",pfNone:"—",ratingN:"ratings"
+});
+
+IC.camera='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 8h3l1.5-2.5h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+IC.star='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>';
+Object.assign(T.ar,{
+ authP:"أدخل رقم هاتفك والرمز السري.",drvHint:"السائقون: استخدموا بيانات الدخول التي أرسلتها إليكم الإدارة.",
+ adminH:"دخول الإدارة",adminP:"هذه الصفحة مخصّصة لصاحب المنصّة.",adminDemo:"دخول تجريبي للإدارة",
+ pickH:"الاستلام من المتاجر",pickN:"{n} طلب",pickCash:"نقد سيُحصَّل من زبائن هذه الطلبات",pickAll:"استلمت جميع الطلبات ({n})",pickScan:"أو امسح كل طلب على حدة",
+ loadH:"ترتيب التحميل في السيارة",loadHint:"حمّل الطلبات بعكس ترتيب التسليم: آخر محطة أولاً في العمق، وأول محطة قرب الباب.",
+ stopN:"المحطة {n}",legBtn:"المرحلة {i}: المحطات {a}–{b}",routeLegs:"المسار مقسّم إلى مراحل من 10 محطات لأن خرائط Google تقبل 10 محطات في المرة الواحدة.",
+ nextH:"التسليم التالي",restH:"باقي الطلبات ({n})",waitPick:"بانتظار الاستلام من المتجر",paidShort:"مدفوع",
+ drvAdded:"أُضيف السائق {n}.",sendCreds:"أرسل بيانات الدخول عبر واتساب",
+ credsMsg:"مرحباً {n}، تمت إضافتك سائقاً في منصّة وصلة.\nرقم الدخول: {p}\nالرمز السري: {c}\nرابط الدخول: {u}",
+ printAll:"اطبع جميع البوالص ({n})",labelsH:"بوالص الشحن"
+});
+Object.assign(T.en,{
+ authP:"Enter your phone number and PIN.",drvHint:"Drivers: use the sign-in details sent to you by the admin.",
+ adminH:"Admin sign-in",adminP:"This page is for the platform owner.",adminDemo:"Demo admin sign-in",
+ pickH:"Pickups",pickN:"{n} orders",pickCash:"Cash to collect from these customers",pickAll:"Picked up all orders ({n})",pickScan:"or scan each order",
+ loadH:"Van loading order",loadHint:"Load orders in reverse delivery order: last stop deepest, first stop by the door.",
+ stopN:"Stop {n}",legBtn:"Leg {i}: stops {a}–{b}",routeLegs:"The route is split into legs of 10 stops because Google Maps accepts 10 stops at a time.",
+ nextH:"Next delivery",restH:"Other orders ({n})",waitPick:"Waiting for pickup at the shop",paidShort:"Paid",
+ drvAdded:"Driver {n} added.",sendCreds:"Send sign-in details on WhatsApp",
+ credsMsg:"Hello {n}, you've been added as a driver on Wasla.\nPhone: {p}\nPIN: {c}\nSign in: {u}",
+ printAll:"Print all labels ({n})",labelsH:"Shipping labels"
+});
+Object.assign(T.ar,{
+ tSettings:"الإعدادات",gLink:"رابط تقييمات Google لنشاطك",gLinkD:"من Google Business Profile اختر «اطلب تقييمات» وانسخ الرابط. يظهر لكل عميل بعد تقييمه.",saveBtn:"احفظ",saved:"تم الحفظ.",
+ gBtn:"انشر تقييمك على Google",gNote:"يُفتح Google لتكتب تقييمك من حسابك.",
+ askRate:"اطلب تقييم العميل",askRateMsg:"مرحباً {n}، نتمنى أن يكون طلبك رقم {o} قد وصلك بأفضل حال. يسعدنا أن تقيّم تجربتك: {u}",
+ revH:"ماذا يقول عملاؤنا",revAvg:"{a} من 5 · {n} تقييم"
+});
+Object.assign(T.en,{
+ tSettings:"Settings",gLink:"Your Google reviews link",gLinkD:"In Google Business Profile choose “Ask for reviews” and copy the link. Every customer sees it after rating.",saveBtn:"Save",saved:"Saved.",
+ gBtn:"Post your review on Google",gNote:"Google opens so you can review from your own account.",
+ askRate:"Ask customer for a rating",askRateMsg:"Hello {n}, we hope order {o} reached you in perfect condition. We'd love your rating: {u}",
+ revH:"What our customers say",revAvg:"{a} out of 5 · {n} ratings"
+});
+Object.assign(T.ar,{
+ st_returning:"مرتجع مع السائق",tr_returning:"الطلب في طريق عودته إلى المتجر",st_returned:"أُعيد إلى المتجر",
+ rt:"إرجاع",retH:"المرتجعات",retNoFee:"مرتجع: بدون أجرة توصيل",retNoFeeD:"لا يُحتسب على المتجر أي مبلغ عن هذا الطلب",
+ retOnline:"دفع العميل إلكترونياً؛ يتولّى المتجر ردّ المبلغ له",
+ retDrvH:"مرتجعات يجب إعادتها إلى المتاجر",retBack:"سلّمت المرتجعات للمتجر ({n})",retEmpty:"لا توجد مرتجعات.",
+ retWith:"مع السائق {d}",retAt:"عاد إلى المتجر",tReturns:"المرتجعات",kRet:"مرتجعات",
+ risk:"⚠ {n} مرتجع سابق لهذا الرقم",riskCod:"لهذا الرقم طلبات لم تُستلم سابقاً، لذلك يتاح الدفع الإلكتروني فقط.",
+ kpiSales:"قيمة الطلبات المسلّمة",kpiDel:"تم توصيلها",kpiRet:"مرتجعات",kpiRate:"نسبة التسليم الناجح"
+});
+Object.assign(T.en,{
+ st_returning:"Return with driver",tr_returning:"Order on its way back to the shop",
+ rt:"Return",retH:"Returns",retNoFee:"Returned: no delivery fee",retNoFeeD:"Nothing is charged to the shop for this order",
+ retOnline:"Customer paid online; the shop handles the refund",
+ retDrvH:"Returns to bring back to shops",retBack:"Returned items to the shop ({n})",retEmpty:"No returns.",
+ retWith:"with driver {d}",retAt:"Back at the shop",tReturns:"Returns",kRet:"Returns",
+ risk:"⚠ {n} previous returns for this number",riskCod:"This number has undelivered orders before, so only online payment is available.",
+ kpiSales:"Delivered order value",kpiDel:"Delivered",kpiRet:"Returns",kpiRate:"Successful delivery rate"
+});
+/* ---------- utils ---------- */
+const LOGO=(sz=34)=>`<svg width="${sz}" height="${sz}" viewBox="0 0 40 40" aria-hidden="true"><rect x=".5" y=".5" width="39" height="39" rx="11" fill="#0D1524" stroke="#C6A15B" stroke-opacity=".55"/><path d="M11 29C11 19 26 23 26.5 15" fill="none" stroke="#C6A15B" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="0.1 4.4"/><circle cx="11" cy="29" r="3.2" fill="#F3F1EC"/><path d="M28 6.5a5.6 5.6 0 0 1 5.6 5.6c0 4-5.6 9-5.6 9s-5.6-5-5.6-9A5.6 5.6 0 0 1 28 6.5z" fill="#C6A15B"/><circle cx="28" cy="12.1" r="2" fill="#0D1524"/></svg>`;
+
+const $=s=>document.querySelector(s);
+const mem={};
+const store={get(k){try{const v=localStorage.getItem(k);return v===null?(mem[k]??null):v}catch(e){return mem[k]??null}},set(k,v){mem[k]=v;try{localStorage.setItem(k,v)}catch(e){}}};
+let lang=store.get("wasla_lang")||"ar";
+const t=k=>T[lang][k]??k;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const aed=n=>(Math.round(n*100)/100).toLocaleString(lang==="ar"?"ar-AE":"en-AE")+(lang==="ar"?" درهم":" AED");
+const digits=p=>(p||"").replace(/[^\d]/g,"");
+const samePhone=(a,b)=>digits(a).length>=8&&digits(a).slice(-9)===digits(b).slice(-9);
+const wa=(p,txt)=>"https://wa.me/"+digits(p)+(txt?"?text="+encodeURIComponent(txt):"");
+const enc=o=>btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const dec=s=>JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g,"+").replace(/_/g,"/")))));
+const uid=()=>Math.random().toString(36).slice(2,9);
+const fmtTime=ts=>new Date(ts).toLocaleString(lang==="ar"?"ar-AE":"en-AE",{dateStyle:"short",timeStyle:"short"});
+const mapOK=u=>/^https?:\/\//.test(u||"");
+const emName=i=>t("emirates")[i]||"";
+
+/* ---------- geo ---------- */
+const norm=s=>(s||"").toLowerCase().replace(/[\s\-_.،,]+/g," ").replace(/^al /,"").trim();
+function areaLL(em,area){const n=norm(area);if(n){const hit=(AREAS[em]||[]).find(a=>norm(a[0])===n||norm(a[1])===n||norm(a[1]).replace(/^ال/,"")===n.replace(/^ال/,""));if(hit)return{lat:hit[2],lng:hit[3],exact:false}}
+  const c=EM_C[em]||EM_C[0];return{lat:c[0],lng:c[1],exact:false}}
+function parseMapLL(u){if(!u)return null;const m=u.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/)||u.match(/[?&](?:q|query|ll|destination)=(-?\d+\.\d+),\s*(-?\d+\.\d+)/)||u.match(/(-?\d{1,2}\.\d{3,}),\s*(-?\d{1,3}\.\d{3,})/);return m?{lat:+m[1],lng:+m[2],exact:true}:null}
+function locOf(x){if(x.lat!=null&&x.lng!=null)return{lat:x.lat,lng:x.lng,exact:true};return parseMapLL(x.map)||areaLL(x.em,x.area)}
+function km(a,b){const R=6371,r=Math.PI/180,dLa=(b.lat-a.lat)*r,dLo=(b.lng-a.lng)*r;const h=Math.sin(dLa/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLo/2)**2;return 2*R*Math.asin(Math.sqrt(h))*1.3}
+function mapsParam(stop){return stop.loc.exact?`${stop.loc.lat},${stop.loc.lng}`:`${stop.q}`}
+const areaOptions=em=>(AREAS[em]||[]).map(a=>`<option value="${esc(lang==="ar"?a[1]:a[0])}">`).join("");
+function getLoc(){return new Promise((res,rej)=>{if(!navigator.geolocation)return rej();navigator.geolocation.getCurrentPosition(p=>res({lat:+p.coords.latitude.toFixed(6),lng:+p.coords.longitude.toFixed(6)}),rej,{enableHighAccuracy:true,timeout:9000})})}
+
+/* ---------- data ---------- */
+function newOrder(S,L,c,pay){
+  const fee=+L.f||0,total=(+L.a||0)+fee;
+  return {no:"W"+String(Date.now()+Math.floor(Math.random()*997)).slice(-6),at:Date.now(),k:L.k,sid:L.sid,item:L.i,price:+L.a,fee,total,
+    c,pay,
+    collect:pay==="cod"?total:0,
+    status:"new",driver:null,otp:String(Math.floor(1000+Math.random()*9000)),sSet:false,cSet:false,log:[{s:"new",at:Date.now()}]};
+}
+const bankOK=o=>o.pay==="online";
+const sellerNet=o=>o.pay==="cod"?o.price:-o.fee;          // + driver gives seller, - driver takes from seller
+const held=o=>o.status!=="delivered"||o.cSet?0:o.sSet?o.fee:(o.pay==="cod"?o.total:0);
+function seed(){
+  const S={v:10,owner:{phone:"+971500000000",pin:"0000"},links:{},
+    sellers:[{id:"s1",shop:"Layla Boutique",phone:"+971501234567",em:0,area:"Al Karama",addr:"Shop 7, Karama Centre",pin:"1234",holder:"Layla Trading LLC",bankName:"Emirates NBD",iban:"AE070331234567890123456"},
+             {id:"s2",shop:"Gadget Corner",phone:"+971552223344",em:2,area:"Al Nahda",addr:"Sahara Centre, Kiosk 12",pin:"1234",holder:"Gadget Corner FZE",bankName:"ADCB",iban:"AE460030000123456789012"}],
+    drivers:[{id:"d1",name:"Ahmad",phone:"+971509998877",zones:[0],pin:"1234",on:true},
+             {id:"d2",name:"Samer",phone:"+971506665544",zones:[0,1,2,3,4,5,6],pin:"1234",on:true},
+             {id:"d3",name:"Khaled",phone:"+971504443322",zones:[1],pin:"1234",on:false}],orders:[]};
+  const mk=(sid,i,a,f,c,pay,mins,st,drv)=>{const k=uid();const o=newOrder(S,{sid,i,a,f,k},c,pay);o.at=Date.now()-mins*60000;o.log[0].at=o.at;
+    const steps=["assigned","picked","delivered"];if(st){o.driver=drv;for(const x of steps){o.status=x;o.log.push({s:x,at:o.at+(steps.indexOf(x)+1)*900000});if(x===st)break}}return o};
+  const C=(name,phone,em,area,addr,slot)=>({name,phone,em,area,addr,map:"",slot});
+  S.orders.push(mk("s1","Abaya black × 1",240,20,C("Mariam","+971507771111",0,"JVC","Bldg 12, Apt 504",3),"cod",55,"assigned","d2"));
+  S.orders.push(mk("s2","AirPods case × 2",90,15,C("Omar","+971558882222",2,"Al Majaz","Tower B, 9th floor, 902",0),"online",40,"assigned","d2"));
+  S.orders.push(mk("s1","Silk scarf × 3",150,20,C("Sara","+971503334444",0,"Business Bay","Executive Towers J, 1807",2),"online",70,"picked","d2"));
+  S.orders.push(mk("s1","Evening dress × 1",380,20,C("Noura","+971504445566",0,"Dubai Marina","Marina Gate 2, 3105",1),"cod",300,"delivered","d2"));
+  S.orders.push(mk("s1","Handbag × 1",210,20,C("Lina","+971505556677",0,"Al Barsha","Al Barsha 1, Villa 8",0),"online",280,"delivered","d2"));
+  S.orders.push(mk("s2","Smart watch × 1",180,25,C("Yousef","+971506667788",2,"Al Taawun","Al Taawun Tower, 1402",2),"online",260,"delivered","d2"));
+  [["Aisha","Dubai Marina","Marina Heights, 1204","cod"],["Khalid","JLT","Cluster X, Tower 2, 905","online"],["Maha","Al Barsha","Al Barsha 2, Villa 31","cod"],["Dana","Jumeirah","Street 21, Villa 14","online"],["Hessa","Deira","Al Rigga Rd, Bldg 5, 301","cod"],["Tariq","Al Qusais","Qusais 1, Bldg 18, 207","cod"],["Rana","Mirdif","Uptown Mirdif, 12","online"],["Nadia","Silicon Oasis","Palace Tower, 1108","cod"],["Salem","Downtown Dubai","Burj Views B, 2204","online"],["Laila","Arabian Ranches","Saheel 3, Villa 40","cod"],["Hamad","International City","China Cluster, R12, 14","cod"],["Mona","Al Karama","Karama Bldg 9, 12","online"]]
+    .forEach(([n,a,ad,p],i)=>S.orders.push(mk("s1",["Abaya × 1","Dress × 1","Scarf set × 2","Handbag × 1"][i%4],[180,260,120,310][i%4],20,C(n,"+97150"+String(1000000+i*7331).slice(0,7),0,a,ad,i%4),p,30-i,"assigned","d2")));
+  S.orders[3].rating={v:5,c:"وصل الطلب بسرعة والسائق محترم جداً."};S.orders[4].rating={v:5,c:"Smooth payment and on-time delivery."};S.orders[5].rating={v:4,c:"تجربة ممتازة، والتتبّع واضح."};
+  {const r=mk("s2","Bluetooth speaker × 1",140,25,C("Faisal","+971507778899",2,"Rolla","Rolla Tower, 604",1),"cod",200,"picked","d1");r.status="returned";r.attempts=2;r.failReason=1;r.log.push({s:"returned",at:r.at+3600000});S.orders.push(r);
+    const r2=mk("s1","Kaftan × 1",220,20,C("Faisal","+971507778899",2,"Rolla","Rolla Tower, 604",2),"cod",150,"picked","d2");r2.status="returning";r2.attempts=1;r2.failReason=1;r2.log.push({s:"returning",at:r2.at+2400000});S.orders.push(r2)}
+  S.orders.push(mk("s2","Phone charger × 1",60,25,C("Huda","+971529990000",3,"Al Nuaimia","Villa 22, Street 4",0),"cod",8));
+  S.orders.push(mk("s1","Perfume set × 1",320,20,C("Reem","+971561112233",1,"Al Reem Island","Sky Tower, 2203",1),"cod",5));
+  return S;
+}
+let S;try{S=JSON.parse(store.get("wasla_v10")||"null")}catch(e){}
+if(!S||S.v!==10)S=seed();S.settings=S.settings||{googleLink:""};
+const save=()=>store.set("wasla_v10",JSON.stringify(S));save();
+let sess=null;try{sess=JSON.parse(store.get("wasla_sess6")||"null")}catch(e){}
+const setSess=s=>{sess=s;store.set("wasla_sess6",JSON.stringify(s))};
+const seller=id=>S.sellers.find(x=>x.id===id)||{shop:"?",phone:"",addr:"",em:0,area:""};
+const driver=id=>S.drivers.find(x=>x.id===id);
+const activeOf=id=>S.orders.filter(o=>o.driver===id&&(o.status==="assigned"||o.status==="picked"));
+const cashOf=id=>S.orders.filter(o=>o.driver===id).reduce((a,o)=>a+held(o),0);
+const feesReady=id=>S.orders.filter(o=>o.driver===id&&o.status==="delivered"&&o.sSet&&!o.cSet).reduce((a,o)=>a+o.fee,0);
+function settleGroups(filter,key){const g={};S.orders.filter(o=>o.status==="delivered"&&!o.sSet&&filter(o)).forEach(o=>{const k=o[key];(g[k]=g[k]||{k,cash:[],bank:[],net:0});(o.pay==="cod"?g[k].cash:g[k].bank).push(o);g[k].net+=sellerNet(o)});return Object.values(g)}
+const isRet=o=>o.status==="returning"||o.status==="returned";
+const returningOf=id=>S.orders.filter(o=>o.driver===id&&o.status==="returning");
+const riskOf=(phone,except)=>S.orders.filter(o=>o!==except&&isRet(o)&&samePhone(o.c.phone,phone)).length;
+const trackUrl=o=>location.href.split("#")[0]+"#o="+enc((S.links&&S.links[o.k])||{sid:o.sid,i:o.item,a:o.price,f:o.fee,k:o.k});
+function setStatus(o,s){o.status=s;o.log.push({s,at:Date.now()})}
+
+let ui={page:"home",tab:null,filter:"all",link:null,cust:null,preview:false,flash:"",me:null,custLoc:null,regLoc:null};
+
+/* ---------- dispatch ---------- */
+function bestDriver(o){
+  let pool=S.drivers.filter(d=>d.on&&d.zones.includes(o.c.em));
+  if(!pool.length)pool=S.drivers.filter(d=>d.on);
+  if(!pool.length)return null;
+  return pool.map(d=>{const act=activeOf(d.id);const batch=act.some(x=>x.sid===o.sid&&x.status==="assigned");return{d,score:act.length-(batch?2:0)}}).sort((a,b)=>a.score-b.score)[0].d;
+}
+function autoAssign(){let n=0,miss=0;
+  S.orders.filter(o=>o.status==="new").sort((a,b)=>a.at-b.at).forEach(o=>{const d=bestDriver(o);if(d){o.driver=d.id;setStatus(o,"assigned");n++}else miss++});
+  save();ui.flash=(n?t("autoDone").replace("{n}",n):t("noneToAssign"))+(miss?" "+t("noDrivers"):"")}
+
+/* ---------- route optimisation ---------- */
+function buildStops(did){
+  const act=activeOf(did),stops=[],pu={};
+  act.filter(o=>o.status==="assigned").forEach(o=>{const s=seller(o.sid);
+    if(!pu[o.sid]){pu[o.sid]={id:"p"+o.sid,type:"pu",name:s.shop,sub:`${s.area}، ${emName(s.em)}`,loc:locOf(s),q:`${s.addr?s.addr+", ":""}${s.area}, ${EM_EN[s.em]}, UAE`,orders:[],phone:s.phone};stops.push(pu[o.sid])}
+    pu[o.sid].orders.push(o.no)});
+  const rt={};returningOf(did).forEach(o=>{const s=seller(o.sid);
+    if(!rt[o.sid]){rt[o.sid]={id:"r"+o.sid,type:"rt",name:s.shop,sub:`${s.area}، ${emName(s.em)}`,loc:locOf(s),q:`${s.addr?s.addr+", ":""}${s.area}, ${EM_EN[s.em]}, UAE`,orders:[],phone:s.phone};stops.push(rt[o.sid])}
+    rt[o.sid].orders.push(o.no)});
+  act.forEach(o=>{const c=o.c;stops.push({id:"d"+o.no,type:"dv",name:c.name,sub:`${c.area}، ${emName(c.em)}`,loc:locOf(c),q:`${c.area}, ${EM_EN[c.em]}, UAE`,orders:[o.no],needs:o.status==="assigned"?"p"+o.sid:null,phone:c.phone})});
+  return stops;
+}
+function routeLen(seq,start){let d=0,p=start;seq.forEach(s=>{if(p)d+=km(p,s.loc);p=s.loc});return d}
+function feasible(seq){const seen=new Set();for(const s of seq){if(s.needs&&!seen.has(s.needs))return false;seen.add(s.id)}return true}
+function nn(stops,start){const left=[...stops],seq=[],done=new Set();let cur=start;
+  while(left.length){const cand=left.filter(s=>!s.needs||done.has(s.needs));
+    let best=cand[0];if(cur)best=cand.reduce((b,s)=>km(cur,s.loc)<km(cur,b.loc)?s:b,cand[0]);
+    seq.push(best);done.add(best.id);left.splice(left.indexOf(best),1);cur=best.loc}
+  return seq}
+function optimise(stops,start){
+  if(!stops.length)return[];
+  let best=null;
+  const starts=start?[start]:stops.filter(s=>!s.needs).map(s=>null);
+  if(start)best=nn(stops,start);
+  else{stops.filter(s=>!s.needs).forEach(s0=>{const rest=stops.filter(s=>s!==s0);const seq=[s0,...nn(rest.map(s=>s.needs===s0.id?{...s,needs:null,_n:s.needs}:s),s0.loc)].map(s=>s._n?{...s,needs:s._n}:s);
+    if(!best||routeLen(seq,null)<routeLen(best,null))best=seq})}
+  // 2-opt with precedence check
+  let improved=true,guard=0;
+  while(improved&&guard++<60){improved=false;
+    for(let i=0;i<best.length-1;i++)for(let j=i+1;j<best.length;j++){
+      const cand=[...best.slice(0,i),...best.slice(i,j+1).reverse(),...best.slice(j+1)];
+      if(feasible(cand)&&routeLen(cand,start)+0.01<routeLen(best,start)){best=cand;improved=true}}}
+  return best;
+}
+
+/* ---------- shell ---------- */
+function tabs(list){$("#tabs").innerHTML=list.map(([k,l,c])=>`<button role="tab" data-act="tab" data-tab="${k}" aria-selected="${ui.tab===k}">${t(l)}${c?`<span class="count">${c}</span>`:""}</button>`).join("")}
+function render(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+  $("#brand").textContent=t("brand");$("#logoMark").innerHTML=LOGO(34);$("#langBtn").textContent=t("lang");
+  const auth=$("#authBtn"),hash=location.hash.match(/o=([^&]+)/);
+  if(hash&&!ui.preview){$("#tabs").innerHTML="";$("#who").textContent="";auth.classList.add("hidden");return renderCustomer(hash[1])}
+  if(ui.preview){$("#tabs").innerHTML="";return renderCustomer(null)}
+  if(!sess){$("#tabs").innerHTML="";$("#who").textContent="";
+    auth.textContent=t("login");auth.dataset.act="goLogin";auth.className="btn primary sm"+(ui.page==="login"?" hidden":"");
+    if(ui.page==="admin"){auth.classList.add("hidden");return renderAdmin()}
+    return ui.page==="login"?renderLogin():ui.page==="register"?renderRegister():renderHome()}
+  auth.textContent=t("logout");auth.dataset.act="logout";auth.className="hbtn";
+  if(sess.role==="owner"){$("#who").textContent=t("rOwner");return renderOwner()}
+  if(sess.role==="seller"){$("#who").textContent=seller(sess.id).shop;return renderSeller()}
+  if(sess.role==="driver"){$("#who").textContent=(driver(sess.id)||{}).name;return renderDriver()}
+}
+
+/* ---------- landing ---------- */
+function renderHome(){
+  $("#app").innerHTML=`
+  <section class="hero"><div class="wrap">
+    <div>
+      <span class="kicker">${t("kicker")}</span>
+      <h1>${t("heroH")}</h1><p>${t("heroP")}</p>
+      <div class="cta"><button class="btn amber" data-act="goRegister">${t("heroCta")}</button><button class="btn line" data-act="goLogin">${t("heroCta2")}</button></div>
+      <div class="micro">${t("heroMicro")}</div>
+      <div class="facts"><div><b>${t("f1")}</b>${t("f1d")}</div><div><b>${t("f2")}</b>${t("f2d")}</div><div><b>${t("f3")}</b>${t("f3d")}</div></div>
+    </div>
+    <div class="routeart" aria-hidden="true">
+      <div class="demo-card">
+        <div class="top"><b class="ltr">#W48213</b><span class="pill s-picked">${t("dcStatus")}</span></div>
+        <div class="route">
+          <span class="dot"></span><div class="stop"><div class="k">${t("from")}</div><strong>${t("dcFrom")}</strong></div>
+          <span class="line"></span><span></span>
+          <span class="dot to"></span><div class="stop"><div class="k">${t("to")}</div><strong>${t("dcTo")}</strong></div>
+        </div>
+        <div class="pbar"><i></i></div><div class="k">${t("dcEta")}</div>
+      </div>
+      <div class="demo-card two"><span>${t("dc2")}</span><strong class="num" style="color:var(--ok)">${t("dc2b")}</strong></div>
+    </div>
+  </div></section>
+  <section class="band"><div class="wrap">
+    <h2>${t("prH")}</h2>
+    <div class="promises" style="margin-top:26px">${[1,2,3,4].map(i=>`<div class="promise"><b>${t("p"+i)}</b><p>${t("p"+i+"d")}</p></div>`).join("")}</div>
+  </div></section>
+  <section class="band" style="padding-top:0"><div class="wrap">
+    <h2>${t("howH")}</h2><p class="sub">${t("howP")}</p>
+    <div class="steps3">${[1,2,3].map(i=>`<div class="step"><b>${t("s"+i)}</b><p>${t("s"+i+"d")}</p></div>`).join("")}</div>
+  </div></section>
+  <section class="band" style="padding-top:0"><div class="wrap">
+    <h2 style="margin-bottom:28px">${t("featH")}</h2>
+    <div class="feats">${[["link",1],["card",2,1],["qr",3],["camera",5],["star",7],["wallet",6]].map(([ic,i,star])=>`<div class="feat${star?" star":""}"><div class="ic">${IC[ic]}</div><b>${t("ft"+i)}</b><p>${t("ft"+i+"d")}</p></div>`).join("")}</div>
+  </div></section>
+  <section class="band" style="padding-top:0"><div class="wrap">
+    <h2>${t("covH")}</h2><p class="sub">${t("covP")}</p>
+    <div class="emis">${t("emirates").map(e=>`<span>${e}</span>`).join("")}</div>
+  </div></section>
+  ${reviewsBand()}
+  <section class="band" style="padding-top:0"><div class="wrap faq">
+    <h2 style="margin-bottom:22px">${t("faqH")}</h2>
+    ${[1,2,3,4,5].map(i=>`<details><summary>${t("q"+i)}</summary><p>${t("a"+i)}</p></details>`).join("")}
+  </div></section>
+  <section class="wrap"><div class="closing"><div><h2>${t("closeH")}</h2><p>${t("closeP")}</p></div><button class="btn amber" data-act="goRegister">${t("closeBtn")}</button></div></section>
+  <footer class="wrap"><div class="flogo">${LOGO(28)}<b>${t("brand")}</b></div><span>© 2026 ${t("foot")}</span></footer>`;
+}
+function reviewsBand(){
+  const r=S.orders.filter(o=>o.rating);if(!r.length)return"";
+  const avg=(r.reduce((a,o)=>a+o.rating.v,0)/r.length).toFixed(1),withC=r.filter(o=>o.rating.c).sort((a,b)=>b.at-a.at).slice(0,3);
+  return `<section class="band" style="padding-top:0"><div class="wrap">
+    <div class="actions" style="justify-content:space-between;align-items:baseline;margin-bottom:22px"><h2 style="margin:0">${t("revH")}</h2>
+      <span><span class="stars-s" style="font-size:1.2rem">${"★".repeat(Math.round(avg))}<span>${"★".repeat(5-Math.round(avg))}</span></span> <b>${t("revAvg").replace("{a}",avg).replace("{n}",r.length)}</b></span></div>
+    ${withC.length?`<div class="feats">${withC.map(o=>`<figure class="feat" style="margin:0"><div class="stars-s">${"★".repeat(o.rating.v)}<span>${"★".repeat(5-o.rating.v)}</span></div><blockquote style="margin:10px 0;font-size:1.05rem">«${esc(o.rating.c)}»</blockquote><figcaption class="k">${esc(o.c.name)}، ${esc(emName(o.c.em))}</figcaption></figure>`).join("")}</div>`:""}
+  </div></section>`;
+}
+function renderLogin(){
+  $("#app").innerHTML=`<div class="app"><div class="auth">
+    <h1>${t("authH")}</h1><p class="lead">${t("authP")}</p>
+    <form class="panel grid" data-form="login" novalidate>
+      <div><label for="lph">${t("phone")}</label><input id="lph" type="tel" class="ltr" autocomplete="tel" placeholder="+971 5X XXX XXXX" required></div>
+      <div><label for="lpin">${t("pin")}</label><input id="lpin" type="password" inputmode="numeric" maxlength="6" autocomplete="current-password" required></div>
+      <p class="err" id="ferr" role="alert"></p>
+      <button class="btn primary full" type="submit">${t("enter")}</button>
+      <div class="divider">${t("demoTry")}</div>
+      <div class="demo-btns"><button class="btn ghost sm" type="button" data-act="demo" data-role="seller">${t("rSeller")}</button><button class="btn ghost sm" type="button" data-act="demo" data-role="driver">${t("rDriver")}</button></div>
+    </form>
+    <button class="btn ghost full" data-act="goRegister">${t("newShop")}</button>
+    <p class="k center" style="margin-top:14px">${t("drvHint")}</p>
+  </div></div>`;
+}
+function renderAdmin(){
+  $("#app").innerHTML=`<div class="app"><div class="auth">
+    <div style="margin-top:10px">${LOGO(44)}</div>
+    <h1>${t("adminH")}</h1><p class="lead">${t("adminP")}</p>
+    <form class="panel grid" data-form="adminLogin" novalidate>
+      <div><label for="aph">${t("phone")}</label><input id="aph" type="tel" class="ltr" autocomplete="username" required></div>
+      <div><label for="apin">${t("pin")}</label><input id="apin" type="password" inputmode="numeric" maxlength="6" autocomplete="current-password" required></div>
+      <p class="err" id="ferr" role="alert"></p>
+      <button class="btn primary full" type="submit">${t("enter")}</button>
+      <button class="btn ghost sm" type="button" data-act="adminDemo">${t("adminDemo")}</button>
+    </form></div></div>`;
+}
+function renderRegister(){
+  $("#app").innerHTML=`<div class="app"><div class="auth" style="max-width:540px">
+    <h1>${t("regH")}</h1><p class="lead">${t("regP")}</p>
+    <form class="panel grid" data-form="register" novalidate>
+      <div><label for="rs">${t("shopName")}</label><input id="rs" required></div>
+      <div class="grid two"><div><label for="rp">${t("sphone")}</label><input id="rp" type="tel" class="ltr" placeholder="+971 5X XXX XXXX" required></div>
+      <div><label for="rpin">${t("pin")}</label><input id="rpin" type="password" inputmode="numeric" maxlength="6" required></div></div>
+      <div class="grid two"><div><label for="rem">${t("emirate")}</label><select id="rem" data-emsel="rareas">${t("emirates").map((e,i)=>`<option value="${i}">${e}</option>`).join("")}</select></div>
+      <div><label for="rar">${t("area")}</label><input id="rar" list="rareas" required placeholder="${t("areaPh")}"><datalist id="rareas">${areaOptions(0)}</datalist></div></div>
+      <div><label for="ra">${t("shopAddr")}</label><input id="ra" required></div>
+      <h2 style="margin:8px 0 0">${t("regBank")}</h2><p class="k" style="margin:-8px 0 0">${t("regBankD")}</p>
+      <div><label for="bh">${t("holder")}</label><input id="bh" required></div>
+      <div class="grid two"><div><label for="bn">${t("bankName")}</label><input id="bn" required></div><div><label for="bi">${t("iban")}</label><input id="bi" class="ltr" placeholder="AE07 0331 2345 6789 0123 456" required></div></div>
+      <div class="locbtn"><button class="btn ghost sm" type="button" data-act="regLoc">${IC.pin} ${t("shopLoc")}</button><span id="regLocMsg" class="okline"></span></div>
+      <p class="err" id="ferr" role="alert"></p>
+      <button class="btn primary full" type="submit">${t("registerShop")}</button>
+    </form>
+    <button class="btn ghost full" data-act="goLogin">${t("haveAcct")}</button>
+  </div></div>`;
+}
+
+/* ---------- money ---------- */
+function payTag(o){return o.pay==="cod"?`<span class="tag">${t("codTag")}</span>`:`<span class="tag paid">${t("paidTag")}</span>`}
+function moneyBox(o,mode){
+  const R=[];
+  if(isRet(o)){R.push(`<div class="mr" style="background:var(--soft)"><span><b>${t("retNoFee")}</b><small>${o.pay==="online"&&mode!=="driver"?t("retOnline"):t("retNoFeeD")}</small></span><strong class="num">${aed(0)}</strong></div>`);return `<div class="money">${R.join("")}</div>`}
+  if(mode==="seller"){
+    if(o.pay==="online")R.push(`<div class="mr okr"><span>✓ ${t("s_paid")}<small>${t("s_feeLater").replace("{x}",aed(o.fee))}</small></span><strong class="num">${aed(o.total)}</strong></div>`);
+    else R.push(`<div class="mr okr"><span>${t("s_cod")}<small>${t("s_codD")}</small></span><strong class="num">${aed(o.price)}</strong></div>`);
+    return `<div class="money">${R.join("")}</div>`;
+  }
+  if(o.pay==="cod")R.push(`<div class="mr hl"><span>${t("m_fromCust")}<small>${t("m_fromCustD")}</small></span><strong class="num">${aed(o.total)}</strong></div>`);
+  else{R.push(`<div class="mr okr"><span>✓ ${t("m_custPaid")}<small>${t("m_custPaidD")}</small></span><strong class="num">${aed(0)}</strong></div>`);
+    R.push(`<div class="mr"><span class="k">${t("m_feeLater").replace("{x}",aed(o.fee))}</span></div>`)}
+  if(mode==="owner"){const n=sellerNet(o);R.push(`<div class="mr"><span class="k">${t("m_ownerNet")}: ${esc(seller(o.sid).shop)}</span><span class="num k">${n>=0?"+":"−"} ${aed(Math.abs(n))}</span></div>`)}
+  return `<div class="money">${R.join("")}</div>`;
+}
+
+/* ---------- order card ---------- */
+function orderCard(o,mode){
+  const s=seller(o.sid),c=o.c,d=driver(o.driver);
+  let actions="";
+  if(mode==="owner"){
+    const opts=S.drivers.map(x=>`<option value="${x.id}" ${o.driver===x.id?"selected":""}>${esc(x.name)} · ${activeOf(x.id).length}${x.on?"":" ("+t("offline")+")"}</option>`).join("");
+    actions=`${o.status==="delivered"||isRet(o)?`<span class="muted">🛵 ${esc(d?d.name:"")}</span>`:`<div class="assign"><label class="k" for="as-${o.no}" style="margin:0">${t("assignTo")}</label><select id="as-${o.no}" data-assign="${o.no}"><option value="">${t("pickDriver")}</option>${opts}</select></div>`}
+      <button class="btn ghost sm" data-act="label" data-no="${o.no}">${t("labelBtn")}</button>`;
+  }else if(mode==="seller"){
+    actions=`<button class="btn primary sm" data-act="label" data-no="${o.no}">${IC.qr} ${t("labelBtn")}</button><a class="btn wa sm" target="_blank" rel="noopener" href="${esc(wa(c.phone,"#"+o.no))}">${t("waCustomer")}</a>`;
+  }else if(mode==="driver"){
+    const dl=o.pay==="cod"?t("deliverCash").replace("{x}",aed(o.total)):t("deliver");
+    actions=o.status==="assigned"
+      ?`<button class="btn primary" data-act="pickup" data-no="${o.no}">${t("pickupBtn")}</button><a class="btn wa sm" target="_blank" rel="noopener" href="${esc(wa(s.phone,"#"+o.no))}">${t("waSeller")}</a><a class="btn ghost sm" href="tel:${digits(s.phone)}">${t("call")}</a>`
+      :`<div class="otp"><label class="k" for="otp-${o.no}" style="margin:0">${t("enterOtp")}</label><input id="otp-${o.no}" inputmode="numeric" maxlength="4">
+          <label class="btn ghost sm" style="margin:0">${ui.pod&&ui.pod[o.no]?t("podOk"):"📷 "+t("podBtn")}<input type="file" accept="image/*" capture="environment" data-pod="${o.no}" class="hidden"></label>
+          <button class="btn primary" data-act="deliver" data-no="${o.no}">${dl}</button></div>
+        ${o.attempts?`<div class="k" style="width:100%">${t("lastFail")}: ${esc(t("failR")[o.failReason]||"")} · ${o.attempts} ${t("attempts")}</div>`:""}
+        <a class="btn ghost sm" target="_blank" rel="noopener" href="${esc(wa(c.phone,t("onWayMsg").replace("{n}",c.name).replace("{o}","#"+o.no).replace("{s}",s.shop)))}">${t("onWay")}</a>
+        <button class="btn ghost sm" data-act="failOpen" data-no="${o.no}">${t("failBtn")}</button>
+        <p class="err" id="oerr-${o.no}" role="alert" style="width:100%;margin:0"></p>
+        <a class="btn wa sm" target="_blank" rel="noopener" href="${esc(wa(c.phone,"#"+o.no))}">${t("waCustomer")}</a><a class="btn ghost sm" href="tel:${digits(c.phone)}">${t("call")}</a>`;
+  }
+  const cl=locOf(c);
+  return `<article class="card" id="card-${o.no}">
+    <div class="card-top"><b>#${o.no}</b><span class="time">${fmtTime(o.at)}</span>${payTag(o)}${(()=>{const r=riskOf(o.c.phone,o);return r&&!isRet(o)?`<span class="tag" style="background:#FDE7E7;color:var(--err)">${t("risk").replace("{n}",r)}</span>`:""})()}<span class="pill s-${o.status}">${t("st_"+o.status)}</span></div>
+    <div class="route">
+      <span class="dot"></span><div class="stop"><div class="k">${t("from")}</div><strong>${esc(s.shop)}</strong> · <span class="ltr">${esc(s.phone)}</span><div>${esc(s.area)}، ${esc(emName(s.em))}. ${esc(s.addr)}</div><div class="muted">${esc(o.item)}</div></div>
+      <span class="line"></span><span></span>
+      <span class="dot to"></span><div class="stop"><div class="k">${t("to")}</div><strong>${esc(c.name)}</strong> · <span class="ltr">${esc(c.phone)}</span>
+        <div>${esc(c.area)}، ${esc(emName(c.em))}. ${esc(c.addr)}</div><div class="k">${esc(t("slots")[c.slot])}${mode==="owner"&&o.status!=="delivered"?` · ${t("otpShort")} <span class="ltr">${o.otp}</span>`:""}</div>
+        ${mode!=="seller"&&o.status!=="delivered"?`<a class="lnk" href="${esc(cl.exact?`https://www.google.com/maps/dir/?api=1&destination=${cl.lat},${cl.lng}`:`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.addr+", "+c.area+", "+EM_EN[c.em]+", UAE")}`)}" target="_blank" rel="noopener">${t("openMap")}</a>`:""}</div>
+    </div>
+    ${moneyBox(o,mode)}
+    ${o.pod||o.rating?`<div class="actions" style="margin:-4px 0 12px">${o.pod?`<button class="podthumb" data-act="podView" data-no="${o.no}" aria-label="${t("podView")}"><img src="${o.pod}" alt=""></button>`:""}${o.rating?`<span class="stars-s" title="${esc(o.rating.c||"")}">${"★".repeat(o.rating.v)}<span>${"★".repeat(5-o.rating.v)}</span></span>${o.rating.c?`<span class="muted" style="font-size:.88rem">«${esc(o.rating.c)}»</span>`:""}`:""}</div>`:""}
+    ${o.status==="delivered"&&!o.rating&&mode!=="driver"?`<div class="actions" style="margin:-4px 0 12px"><a class="btn ghost sm" target="_blank" rel="noopener" href="${esc(wa(c.phone,t("askRateMsg").replace("{n}",c.name).replace("{o}","#"+o.no).replace("{u}",trackUrl(o))))}">★ ${t("askRate")}</a></div>`:""}
+    ${o.status==="returned"?`<div class="k" style="margin:-4px 0 10px">${esc(t("failR")[o.failReason]||"")}</div>`:""}
+    <div class="actions">${actions}</div>
+  </article>`;
+}
+function filterBar(list){return `<div class="filters">${["all","new","assigned","picked","delivered","returning","returned"].map(k=>{const n=k==="all"?list.length:list.filter(o=>o.status===k).length;
+  return `<button class="chip" aria-pressed="${ui.filter===k}" data-act="filter" data-f="${k}">${k==="all"?t("all"):t("st_"+k)} ${n}</button>`}).join("")}</div>`}
+const applyFilter=l=>(ui.filter==="all"?l:l.filter(o=>o.status===ui.filter)).slice().sort((a,b)=>b.at-a.at);
+
+/* ---------- owner ---------- */
+function renderOwner(){
+  if(!ui.tab)ui.tab="orders";
+  const nNew=S.orders.filter(o=>o.status==="new").length;
+  tabs([["orders","tOrders",nNew],["perf","tPerf"],["drivers","tDrivers"],["sellers","tSellers"],["settings","tSettings"]]);
+  let h="";
+  if(ui.tab==="orders"){
+    const act=S.orders.filter(o=>o.status==="assigned"||o.status==="picked").length,dn=S.orders.filter(o=>o.status==="delivered").length,cash=S.drivers.reduce((a,d)=>a+cashOf(d.id),0);
+    h=`<h1>${t("tOrders")}</h1>
+    <div class="stats"><div class="stat ${nNew?"hot":""}"><b>${nNew}</b><span>${t("kNew")}</span></div><div class="stat"><b>${act}</b><span>${t("kActive")}</span></div>
+      <div class="stat"><b>${dn} <small class="k">/ ${S.orders.filter(isRet).length} ${t("kRet")}</small></b><span>${t("kDone")}</span></div><div class="stat"><b class="num">${aed(cash)}</b><span>${t("kCash")}</span></div></div>
+    <div class="actions" style="margin-bottom:14px"><button class="btn primary" data-act="auto">${t("autoAssign")}</button>${ui.flash?`<span class="flash" role="status">${esc(ui.flash)}</span>`:""}</div>
+    ${filterBar(S.orders)}
+    ${applyFilter(S.orders).map(o=>orderCard(o,"owner")).join("")||`<div class="empty">${t("noneToAssign")}</div>`}
+    <div class="note" style="margin-top:18px"><b>${t("howTitle")}</b><div>${t("howText")}</div><ol><li>${t("how1")}</li><li>${t("how2")}</li><li>${t("how3")}</li></ol><div>${t("how4")}</div></div>
+    <p style="margin-top:18px"><button class="btn ghost sm" data-act="reset">${t("resetDemo")}</button></p>`;ui.flash="";
+  }else if(ui.tab==="settings"){
+    h=`<h1>${t("tSettings")}</h1><form class="panel grid" data-form="settings" novalidate>
+      <div><label for="gl">${t("gLink")}</label><input id="gl" type="url" class="ltr" value="${esc(S.settings.googleLink)}" placeholder="https://g.page/r/.../review"><span class="d" style="margin-top:6px">${t("gLinkD")}</span></div>
+      <div class="actions"><button class="btn primary" type="submit">${t("saveBtn")}</button>${ui.flash?`<span class="flash">${esc(ui.flash)}</span>`:""}</div></form>
+      <button class="btn ghost sm" data-act="reset">${t("resetDemo")}</button>`;ui.flash="";
+  }else if(ui.tab==="perf"){
+    h=perfView();
+  }else if(ui.tab==="drivers"){
+    h=`<h1>${t("tDrivers")}</h1>
+    ${S.drivers.map(d=>{const cash=cashOf(d.id);return `<div class="card"><div class="card-top"><b style="direction:inherit">${esc(d.name)}</b><span class="ltr muted">${esc(d.phone)}</span>${avgRating(o=>o.driver===d.id)}
+      <button class="toggle ${d.on?"on":"off"}" style="margin-inline-start:auto" data-act="toggleDrv" data-id="${d.id}">${d.on?t("online_"):t("offline")}</button></div>
+      <div class="zones">${d.zones.length===7?`<span class="tag">${t("allEm")}</span>`:d.zones.map(z=>`<span class="tag">${emName(z)}</span>`).join("")}</div>
+      <div class="actions" style="margin-top:12px"><span class="muted">${activeOf(d.id).length} ${t("activeN")}</span><span class="spacer"></span>
+      <span>${t("cashHeld")}: <strong class="num">${aed(cash)}</strong></span></div>
+      <div class="actions" style="margin-top:8px"><span class="k">${t("feesReady")}: <b class="num">${aed(feesReady(d.id))}</b> · ${t("awaitSellers")}: <b class="num">${aed(cash-feesReady(d.id))}</b></span><span class="spacer"></span>
+      ${feesReady(d.id)?`<button class="btn primary sm" data-act="settle" data-id="${d.id}">${t("received")} ${aed(feesReady(d.id))}</button>`:""}<a class="btn wa sm" target="_blank" rel="noopener" href="${esc(wa(d.phone))}">WhatsApp</a></div></div>`}).join("")}
+    ${ui.newDrv?`<div class="panel pop" style="border-color:var(--accent)"><b>${t("drvAdded").replace("{n}",esc(ui.newDrv.name))}</b>
+      <div class="actions" style="margin-top:10px"><a class="btn wa" target="_blank" rel="noopener" href="${esc(wa(ui.newDrv.phone,t("credsMsg").replace("{n}",ui.newDrv.name).replace("{p}",ui.newDrv.phone).replace("{c}",ui.newDrv.pin).replace("{u}",location.href.split("#")[0])))}">${t("sendCreds")}</a></div></div>`:""}
+    <form class="panel grid" data-form="addDriver" novalidate><h2>${t("addDriver")}</h2>
+      <div class="grid two"><div><label for="dn">${t("driverName")}</label><input id="dn" required></div><div><label for="dp">${t("driverPhone")}</label><input id="dp" type="tel" class="ltr" placeholder="+971 5X XXX XXXX" required></div></div>
+      <div><label>${t("zones")}</label><div class="checks"><label><input type="checkbox" id="zall" data-act="zall" checked>${t("allEm")}</label>${t("emirates").map((e,i)=>`<label><input type="checkbox" name="z" value="${i}" checked>${e}</label>`).join("")}</div></div>
+      <div style="max-width:200px"><label for="dpin">${t("pin")}</label><input id="dpin" inputmode="numeric" maxlength="6" value="1234"></div>
+      <p class="err" id="ferr" role="alert"></p><button class="btn primary" type="submit" style="justify-self:start">${t("addDriver")}</button></form>`;
+  }else{
+    h=`<h1>${t("tSellers")}</h1>${S.sellers.map(s=>{const os=S.orders.filter(o=>o.sid===s.id),g=settleGroups(o=>o.sid===s.id,"sid")[0],due=g?g.net:0;
+      return `<div class="card"><div class="card-top"><b style="direction:inherit">${esc(s.shop)}</b><span class="ltr muted">${esc(s.phone)}</span>${avgRating(o=>o.sid===s.id)}</div><div class="muted">${esc(s.area)}، ${esc(emName(s.em))}. ${esc(s.addr)}</div>
+      <div class="actions" style="margin-top:12px"><span class="muted">${os.length} ${t("ordersN")}</span><span class="spacer"></span><span>${t("pendNet")}: <strong class="num">${aed(Math.abs(due))}</strong> ${due?(due>0?t("toSellerN"):t("fromSellerN")):""}</span><a class="btn wa sm" target="_blank" rel="noopener" href="${esc(wa(s.phone))}">WhatsApp</a></div></div>`}).join("")||`<div class="empty">${t("sellersEmpty")}</div>`}`;
+  }
+  $("#app").innerHTML=`<div class="app">${h}</div>`;
+}
+
+function avgRating(f){const r=S.orders.filter(o=>f(o)&&o.rating);if(!r.length)return"";const a=r.reduce((x,o)=>x+o.rating.v,0)/r.length;return `<span class="tag" style="background:var(--accent-soft);color:var(--accent-ink)">★ ${a.toFixed(1)} · ${r.length}</span>`}
+function perfView(){
+  const all=S.orders,del=all.filter(o=>o.status==="delivered"),ret=all.filter(isRet);
+  const fees=del.reduce((a,o)=>a+o.fee,0),succ=del.length+ret.length?Math.round(del.length/(del.length+ret.length)*100):null;
+  const rated=all.filter(o=>o.rating),avg=rated.length?(rated.reduce((a,o)=>a+o.rating.v,0)/rated.length).toFixed(1):null;
+  const onl=all.filter(o=>o.pay==="online").length,cp=all.length?Math.round((all.length-onl)/all.length*100):0;
+  const byEm=EM_EN.map((_,i)=>all.filter(o=>o.c.em===i).length),mx=Math.max(1,...byEm);
+  const shops=S.sellers.map(s=>({s,n:all.filter(o=>o.sid===s.id).length})).sort((a,b)=>b.n-a.n).slice(0,5),mxs=Math.max(1,...shops.map(x=>x.n));
+  const bar=(label,n,m)=>`<div class="bar"><span>${label}</span><div><i style="width:${n/m*100}%"></i></div><b class="num">${n}</b></div>`;
+  return `<h1>${t("tPerf")}</h1>
+  <div class="stats"><div class="stat"><b>${all.length}</b><span>${t("pfOrders")}</span></div><div class="stat hot"><b class="num">${aed(fees)}</b><span>${t("pfFees")}</span></div>
+    <div class="stat"><b>${succ==null?t("pfNone"):succ+"%"}</b><span>${t("pfSuccess")}</span></div><div class="stat"><b>${avg?"★ "+avg:t("pfNone")}</b><span>${t("pfRating")}${rated.length?` · ${rated.length} ${t("ratingN")}`:""}</span></div></div>
+  <div class="panel"><h2>${t("pfPay")}</h2><div class="split"><i style="width:${cp}%"></i></div>
+    <div class="actions" style="justify-content:space-between;margin-top:8px"><span>${t("cod")} ${cp}%</span><span>${t("online")} ${100-cp}%</span></div></div>
+  <div class="panel"><h2>${t("pfByEm")}</h2>${byEm.map((n,i)=>bar(emName(i),n,mx)).join("")}</div>
+  <div class="panel"><h2>${t("pfTop")}</h2>${shops.map(x=>bar(esc(x.s.shop),x.n,mxs)).join("")}</div>`;
+}
+
+/* ---------- seller ---------- */
+function renderSeller(){
+  if(!ui.tab)ui.tab="new";
+  const me=seller(sess.id),mine=S.orders.filter(o=>o.sid===sess.id);
+  tabs([["new","tNewLink"],["mine","tMyOrders",mine.filter(o=>o.status==="new").length],["returns","tReturns",mine.filter(o=>o.status==="returning").length],["settle","tSettle"],["bank","tBank"]]);
+  let h="";
+  if(ui.tab==="new"){
+    h=`<h1>${t("sellerTitle")}</h1><p class="lead">${t("sellerLead")}</p>
+    <form class="panel grid" data-form="link" novalidate>
+      <div><label for="item">${t("item")}</label><textarea id="item" required placeholder="${t("itemPh")}"></textarea></div>
+      <div class="grid two"><div><label for="price">${t("price")} <small>(AED)</small></label><input id="price" type="number" min="0" step="0.5" inputmode="decimal" required></div>
+      <div><label for="fee">${t("fee")} <small>(AED)</small></label><input id="fee" type="number" min="0" step="0.5" inputmode="decimal" value="20" required><span class="d" style="margin-top:4px">${t("feeD")}</span></div></div>
+      <div><label for="note">${t("note")} <small>${t("optional")}</small></label><input id="note"></div>
+      <p class="err" id="ferr" role="alert"></p><button class="btn primary full" type="submit">${t("createLink")}</button>
+    </form>
+    ${ui.link?`<div class="panel pop" id="linkPanel"><h2>${t("linkReady")}</h2><p class="muted" style="margin:0">${t("linkReadyLead")}</p>
+      <div class="linkbox"><input id="linkOut" readonly value="${esc(ui.link.url)}"><button class="btn ghost" type="button" data-act="copy">${t("copy")}</button></div>
+      <div class="actions" style="margin-top:12px"><a class="btn wa" target="_blank" rel="noopener" href="${esc("https://wa.me/?text="+encodeURIComponent(ui.link.url))}">${t("shareWa")}</a>
+      <button class="btn ghost" type="button" data-act="preview">${t("preview")}</button></div></div>`:""}`;
+  }else if(ui.tab==="mine"){
+    const printable=mine.filter(o=>o.status==="new"||o.status==="assigned").length;
+    const dl=mine.filter(o=>o.status==="delivered"),rt=mine.filter(isRet);
+    const kpi=`<div class="stats"><div class="stat"><b class="num">${aed(dl.reduce((a,o)=>a+o.price,0))}</b><span>${t("kpiSales")}</span></div><div class="stat"><b>${dl.length}</b><span>${t("kpiDel")}</span></div><div class="stat"><b>${rt.length}</b><span>${t("kpiRet")}</span></div><div class="stat"><b>${dl.length+rt.length?Math.round(dl.length/(dl.length+rt.length)*100)+"%":"—"}</b><span>${t("kpiRate")}</span></div></div>`;
+    h=`<h1>${t("tMyOrders")}</h1>${kpi}${printable?`<button class="btn primary" data-act="printAll" style="margin-bottom:14px">${IC.qr} ${t("printAll").replace("{n}",printable)}</button>`:""}${filterBar(mine)}${applyFilter(mine).map(o=>orderCard(o,"seller")).join("")||`<div class="empty">${t("noSellerOrders")}</div>`}`;
+  }else if(ui.tab==="returns"){
+    const rs=mine.filter(isRet).sort((a,b)=>b.at-a.at);
+    h=`<h1>${t("tReturns")}</h1>${rs.map(o=>orderCard(o,"seller")).join("")||`<div class="empty">${t("retEmpty")}</div>`}`;
+  }else if(ui.tab==="settle"){
+    const groups=settleGroups(o=>o.sid===sess.id,"driver");
+    const done=mine.filter(o=>o.status==="delivered"&&o.sSet).reduce((a,o)=>a+sellerNet(o),0);
+    h=`<h1>${t("tSettle")}</h1><p class="lead">${t("sSetLead")}</p>
+    ${groups.map(g=>{const d=driver(g.k)||{name:"?"};
+      return `<div class="card"><div class="card-top"><b style="direction:inherit">${g.net>=0?t("drvGives").replace("{d}",esc(d.name)):t("youGive").replace("{d}",esc(d.name))}</b><strong class="num" style="margin-inline-start:auto;font-size:1.3rem;color:${g.net>=0?"var(--ok)":"var(--accent-ink)"}">${aed(Math.abs(g.net))}</strong></div>
+      ${breakdown(g,"s")}</div>`}).join("")||`<div class="empty">${t("nothingSettle")}</div>`}
+    <div class="stat" style="margin-top:14px"><b class="num">${aed(done)}</b><span>${t("settledTotal")}</span></div>`;
+  }else{
+    h=`<h1>${t("tBank")}</h1><p class="lead">${t("regBankD")}</p>
+    <form class="panel grid" data-form="bank" novalidate>
+      <div><label for="bh">${t("holder")}</label><input id="bh" value="${esc(me.holder||"")}" required></div>
+      <div class="grid two"><div><label for="bn">${t("bankName")}</label><input id="bn" value="${esc(me.bankName||"")}" required></div>
+      <div><label for="bi">${t("iban")}</label><input id="bi" class="ltr" value="${esc(me.iban||"")}" placeholder="AE07 0331 2345 6789 0123 456" required></div></div>
+      <p class="err" id="ferr" role="alert"></p>
+      <div class="actions"><button class="btn primary" type="submit">${t("bankSave")}</button>${ui.flash?`<span class="flash">${esc(ui.flash)}</span>`:""}</div>
+    </form>`;ui.flash="";
+  }
+  $("#app").innerHTML=`<div class="app">${h}</div>`;
+  if(ui.tab==="new"&&ui.link)$("#linkPanel").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* ---------- driver ---------- */
+function renderDriver(){
+  const d=driver(sess.id);if(!d){setSess(null);return render()}
+  $("#tabs").innerHTML="";
+  const act=activeOf(d.id),done=S.orders.filter(o=>o.driver===d.id&&o.status==="delivered").length;
+  const seq=optimise(buildStops(d.id),ui.me),total=routeLen(seq,ui.me),LIM=10;
+  const stopOf={};seq.forEach((st,i)=>{if(st.type==="dv")stopOf[st.orders[0]]=i+1});
+  const legs=[];for(let i=0;i<seq.length;i+=LIM)legs.push(seq.slice(i,i+LIM));
+  const legUrl=(leg,li)=>{const dest=leg[leg.length-1],wps=leg.slice(0,-1);const origin=li===0?(ui.me?`${ui.me.lat},${ui.me.lng}`:""):mapsParam(legs[li-1][legs[li-1].length-1]);
+    return "https://www.google.com/maps/dir/?api=1"+(origin?`&origin=${encodeURIComponent(origin)}`:"")+`&destination=${encodeURIComponent(mapsParam(dest))}`+(wps.length?`&waypoints=${encodeURIComponent(wps.map(mapsParam).join("|"))}`:"")+"&travelmode=driving"};
+  // pickups grouped by shop
+  const pk={};act.filter(o=>o.status==="assigned").forEach(o=>(pk[o.sid]=pk[o.sid]||[]).push(o));
+  const pickHtml=Object.entries(pk).map(([sid,os])=>{const s=seller(sid),cash=os.reduce((a,o)=>a+o.collect,0);
+    const load=os.slice().sort((a,b)=>(stopOf[b.no]||0)-(stopOf[a.no]||0));
+    return `<div class="card pickcard"><div class="card-top"><b style="direction:inherit">${t("pu")}: ${esc(s.shop)}</b><span class="pill s-assigned">${t("pickN").replace("{n}",os.length)}</span></div>
+      <div class="muted" style="margin-top:-8px">${esc(s.area)}، ${esc(emName(s.em))}. ${esc(s.addr)}</div>
+      <div class="money"><div class="mr hl"><span>${t("pickCash")}</span><strong class="num">${aed(cash)}</strong></div></div>
+      <details class="loadlist"><summary>${t("loadH")} (${os.length})</summary><p class="k">${t("loadHint")}</p>
+        <ol>${load.map(o=>`<li><span class="ltr">#${o.no}</span><span>${esc(o.c.name)}، ${esc(o.c.area)}</span><span class="k">${t("stopN").replace("{n}",stopOf[o.no]||"–")}</span></li>`).join("")}</ol></details>
+      <div class="actions"><button class="btn primary" data-act="pickAll" data-sid="${sid}">✓ ${t("pickAll").replace("{n}",os.length)}</button><a class="btn wa sm" target="_blank" rel="noopener" href="${esc(wa(s.phone))}">${t("waSeller")}</a><a class="btn ghost sm" href="tel:${digits(s.phone)}">${t("call")}</a></div>
+      <p class="k" style="margin:8px 0 0">${t("pickScan")}</p></div>`}).join("");
+  // deliveries in route order
+  const dels=act.slice().sort((a,b)=>(stopOf[a.no]??999)-(stopOf[b.no]??999));
+  const next=dels.find(o=>o.status==="picked");
+  const rest=dels.filter(o=>o!==next);
+  const row=o=>`<details class="ord"><summary><span class="sq">${stopOf[o.no]||"–"}</span><span class="on"><b>${esc(o.c.name)}</b><span class="k">${esc(o.c.area)}، ${esc(emName(o.c.em))} · <span class="ltr">#${o.no}</span></span></span>
+    <span class="oa">${o.status==="assigned"?`<span class="tag">${t("waitPick")}</span>`:o.pay==="cod"?`<b class="num">${aed(o.total)}</b>`:`<span class="tag paid">${t("paidShort")}</span>`}</span></summary>${orderCard(o,"driver")}</details>`;
+  $("#app").innerHTML=`<div class="app">
+  <div class="actions" style="margin-top:26px"><h1 style="margin:0">${t("driverTitle")}</h1><button class="toggle ${d.on?"on":"off"}" style="margin-inline-start:auto" data-act="toggleDrv" data-id="${d.id}">${d.on?t("online_"):t("offline")}</button></div>
+  <div class="stats" style="margin-top:16px"><div class="stat hot"><b>${act.length}</b><span>${t("kActive")}</span></div><div class="stat"><b>${done}</b><span>${t("doneToday")}</span></div>
+    <div class="stat"><b class="num">${aed(cashOf(d.id))}</b><span>${t("myCash")}</span></div><div class="stat"><b style="font-size:1rem">${d.zones.length===7?t("allEm"):d.zones.map(emName).join("، ")}</b><span>${t("zones")}</span></div></div>
+  <button class="btn amber scanbig" data-act="scan">${IC.scan} ${t("scanBtn")}</button>
+  ${pickHtml?`<h2 style="margin:26px 0 12px">${t("pickH")}</h2>${pickHtml}`:""}
+  <div class="routecard">
+    <div class="rh"><b>${t("routeH")}</b><span>${seq.length} ${t("stopsN")} · ~${Math.round(total)} ${t("km")}</span></div>
+    ${seq.length?`<ol class="stops">${seq.map(st=>`<li class="${st.type}"><div><div class="sn">${t(st.type)}: ${esc(st.name)}</div><div class="ss">${esc(st.sub)}${st.orders.length>1?` · ${st.orders.length} ${t("ordersN")}`:` · <span class="ltr">#${st.orders[0]}</span>`}${st.loc.exact?"":` · ${t("approx")}`}</div></div><span></span><a target="_blank" rel="noopener" href="${esc("https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent(mapsParam(st))+"&travelmode=driving")}">${t("nav")}</a></li>`).join("")}</ol>
+    <div class="actions">${legs.map((leg,li)=>`<a class="btn ${li===0?"amber":"line sm"}" target="_blank" rel="noopener" href="${esc(legUrl(leg,li))}">${li===0?IC.route+" ":""}${legs.length>1?t("legBtn").replace("{i}",li+1).replace("{a}",li*LIM+1).replace("{b}",li*LIM+leg.length):t("routeOpen")}</a>`).join("")}
+      ${ui.me?`<span class="okline" style="color:var(--accent)">${t("myLocOk")}</span>`:`<button class="btn line sm" data-act="myLoc">${IC.pin} ${t("useMyLoc")}</button>`}</div>
+    <p class="k" style="margin:12px 0 0">${t("routeNote")}${legs.length>1?" "+t("routeLegs"):""}</p><p class="err" id="locErr" style="color:var(--accent)"></p>`
+    :`<p style="margin:0;color:var(--hero-muted)">${t("noStops")}</p>`}
+  </div>
+  ${retSection(d)}
+  ${next?`<h2 style="margin:26px 0 12px">${t("nextH")} · ${t("stopN").replace("{n}",stopOf[next.no])}</h2>${orderCard(next,"driver")}`:""}
+  ${rest.length?`<h2 style="margin:26px 0 12px">${t("restH").replace("{n}",rest.length)}</h2>${rest.map(row).join("")}`:""}
+  ${settleSection(d)}</div>`;
+}
+function retSection(d){
+  const g={};returningOf(d.id).forEach(o=>(g[o.sid]=g[o.sid]||[]).push(o));const ks=Object.keys(g);if(!ks.length)return"";
+  return `<h2 style="margin:26px 0 12px">${t("retDrvH")}</h2>${ks.map(sid=>{const s=seller(sid),os=g[sid];
+    return `<div class="card" style="border-color:color-mix(in srgb,var(--err) 35%,var(--line))"><div class="card-top"><b style="direction:inherit">${t("rt")}: ${esc(s.shop)}</b><span class="pill s-returning">${os.length}</span></div>
+    <div class="muted" style="margin-top:-8px">${esc(s.area)}، ${esc(emName(s.em))}. ${esc(s.addr)}</div>
+    <ul class="retlist">${os.map(o=>`<li><span class="ltr">#${o.no}</span><span>${esc(o.item)}</span><span class="k">${esc(t("failR")[o.failReason]||"")}</span></li>`).join("")}</ul>
+    <div class="k" style="margin-bottom:10px">${t("retNoFee")}</div>
+    <div class="actions"><button class="btn primary" data-act="retBack" data-sid="${sid}">✓ ${t("retBack").replace("{n}",os.length)}</button><a class="btn wa sm" target="_blank" rel="noopener" href="${esc(wa(s.phone))}">${t("waSeller")}</a></div></div>`}).join("")}`;
+}
+function breakdown(g,who){
+  const P=who==="s"?"ss":"st",cT=g.cash.reduce((a,o)=>a+o.total,0),cF=g.cash.reduce((a,o)=>a+o.fee,0),oF=g.bank.reduce((a,o)=>a+o.fee,0);
+  return `<div class="money" style="margin:0">
+    ${g.cash.length?`<div class="mr"><span>${t(P+"Cash").replace("{n}",g.cash.length)}</span><span class="num">${aed(cT)}</span></div>
+    <div class="mr"><span>${t(P+"CashFee")}</span><span class="num">− ${aed(cF)}</span></div>`:""}
+    ${g.bank.length?`<div class="mr"><span>${t(P+"OnlineFee").replace("{n}",g.bank.length)}</span><span class="num">− ${aed(oF)}</span></div>`:""}
+    ${who==="d"?`<div class="mr hl"><b>${g.net>0?t("stGive"):g.net<0?t("stTake"):t("stEven")}</b><strong class="num" style="font-size:1.15rem">${aed(Math.abs(g.net))}</strong></div>`:""}
+  </div>`;
+}
+function settleSection(d){
+  const groups=settleGroups(o=>o.driver===d.id,"sid");
+  const fr=feesReady(d.id),give=groups.filter(g=>g.net>0).reduce((a,g)=>a+g.net,0),take=groups.filter(g=>g.net<0).reduce((a,g)=>a-g.net,0);
+  const allFees=groups.reduce((a,g)=>a+g.cash.reduce((x,o)=>x+o.fee,0)+g.bank.reduce((x,o)=>x+o.fee,0),0);
+  return `<h2 style="margin:32px 0 4px">${t("setH")}</h2><p class="lead" style="margin-bottom:14px">${t("setLead")}</p>
+  ${groups.length?`<div class="stats"><div class="stat"><b class="num">${aed(give)}</b><span>${t("sumGive")}</span></div><div class="stat"><b class="num">${aed(take)}</b><span>${t("sumTake")}</span></div><div class="stat hot" style="grid-column:span 2"><b class="num">${aed(allFees+fr)}</b><span>${t("toCompany")}</span></div></div>`:""}
+  ${groups.map(g=>{const s=seller(g.k);
+    return `<div class="card"><div class="card-top"><b style="direction:inherit">${esc(s.shop)}</b><span class="muted">${esc(s.area)}</span></div>
+    ${breakdown(g,"d")}
+    <div class="actions" style="margin-top:12px"><button class="btn primary sm" data-act="settleSeller" data-sid="${g.k}">✓ ${t("settleBtn")}</button><a class="btn wa sm" target="_blank" rel="noopener" href="${esc(wa(s.phone))}">${t("waSeller")}</a></div></div>`}).join("")||`<div class="empty">${t("nothingSettle")}</div>`}
+  ${!groups.length&&fr?`<div class="stat hot" style="margin-top:12px"><b class="num">${aed(fr)}</b><span>${t("toCompany")}</span></div>`:""}`;
+}
+
+/* ---------- scanner ---------- */
+let scanStream=null,scanRAF=null;
+function stopScan(){if(scanRAF)cancelAnimationFrame(scanRAF);scanRAF=null;if(scanStream){scanStream.getTracks().forEach(tr=>tr.stop());scanStream=null}}
+function openScanner(){
+  $("#modal").innerHTML=`<div class="overlay" data-act="closeModal"><div class="sheet pop" role="dialog" aria-modal="true" aria-label="${t("scanH")}">
+    <h2>${t("scanH")}</h2><p class="muted" style="margin:0 0 12px;font-size:.92rem">${t("scanHint")}</p>
+    <div class="cam" id="camBox"><video id="camVid" playsinline muted></video><div class="frame"></div></div>
+    <p class="err" id="camErr"></p>
+    <div class="actions"><label class="btn ghost sm" style="margin:0">${t("photoScan")}<input type="file" accept="image/*" capture="environment" id="photoIn" class="hidden"></label></div>
+    <form class="actions" data-form="manualScan" style="margin-top:12px"><input id="manNo" class="ltr" placeholder="W123456" style="flex:1;min-width:140px" aria-label="${t("typeNo")}"><button class="btn primary sm" type="submit">${t("add")}</button></form>
+    <div id="scanRes"></div>
+    <div class="actions" style="justify-content:flex-end;margin-top:14px"><button class="btn ghost" data-act="closeModal">${t("close")}</button></div>
+  </div></div>`;
+  $("#photoIn").addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const img=new Image();img.onload=()=>{const code=decodeImage(img);URL.revokeObjectURL(img.src);code?handleScan(code):showScan(false,t("scanNoQR"))};img.src=URL.createObjectURL(f)});
+  startCam();
+}
+async function startCam(){
+  const v=$("#camVid");
+  try{scanStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:"environment"}});v.srcObject=scanStream;await v.play();
+    const bd=("BarcodeDetector" in window)?new BarcodeDetector({formats:["qr_code"]}):null;
+    const cv=document.createElement("canvas"),cx=cv.getContext("2d",{willReadFrequently:true});
+    const tick=async()=>{if(!scanStream)return;
+      if(v.readyState>=2){let code=null;
+        if(bd){try{const r=await bd.detect(v);if(r[0])code=r[0].rawValue}catch(e){}}
+        else if(typeof jsQR==="function"){cv.width=v.videoWidth;cv.height=v.videoHeight;cx.drawImage(v,0,0);const id=cx.getImageData(0,0,cv.width,cv.height);const r=jsQR(id.data,id.width,id.height);if(r)code=r.data}
+        if(code){handleScan(code);return}}
+      scanRAF=requestAnimationFrame(tick)};
+    tick();
+  }catch(e){$("#camBox").classList.add("hidden");$("#camErr").textContent=t("camFail")}
+}
+function decodeImage(img){if(typeof jsQR!=="function")return null;const cv=document.createElement("canvas"),sc=Math.min(1,1200/Math.max(img.width,img.height));cv.width=img.width*sc;cv.height=img.height*sc;
+  const cx=cv.getContext("2d");cx.drawImage(img,0,0,cv.width,cv.height);const d=cx.getImageData(0,0,cv.width,cv.height);const r=jsQR(d.data,d.width,d.height);return r?r.data:null}
+function showScan(ok,html){const box=$("#scanRes");if(box)box.innerHTML=`<div class="scanres ${ok?"good":"bad"} pop">${html}</div>`}
+function handleScan(raw){
+  stopScan();
+  const m=String(raw).toUpperCase().match(/W\d{6}/);
+  const o=m&&S.orders.find(x=>x.no===m[0]);
+  const again=`<div class="actions" style="margin-top:10px"><button class="btn ghost sm" data-act="scanAgain">${t("scanMore")}</button></div>`;
+  if(!o)return showScan(false,t("scanNone")+again);
+  if(o.status==="delivered")return showScan(false,t("scanDone")+again);
+  if(o.driver&&o.driver!==sess.id)return showScan(false,t("scanOther")+again);
+  if(o.status==="picked"){return showScan(true,t("scanAlready")+again)}
+  o.driver=sess.id;if(o.status==="new")setStatus(o,"assigned");setStatus(o,"picked");save();
+  showScan(true,`<div class="big">✓ <span class="ltr">#${o.no}</span> ${t("scanOk")}</div><div>${esc(o.c.name)}، ${esc(o.c.area)}</div>
+    ${o.pay==="cod"?`<div style="margin-top:6px">${t("m_fromCust")}: <b>${aed(o.total)}</b></div>`:""}${again}`);
+  $("#camBox")&&$("#camBox").classList.add("hidden");
+  renderDriverKeepModal();
+}
+function renderDriverKeepModal(){const m=$("#modal").innerHTML;renderDriver();}
+
+/* ---------- customer ---------- */
+function renderCustomer(raw){
+  let L;
+  if(raw){try{L=dec(raw);if(!L.sid||!L.i)throw 0}catch(e){$("#app").innerHTML=`<div class="app"><div class="panel" style="margin-top:30px">${t("badLink")}</div></div>`;return}}
+  else L=ui.link.payload;
+  if(S.links&&S.links[L.k])L=S.links[L.k];
+  const banner=ui.preview?`<div class="banner"><span>${t("previewNote")}</span><button type="button" data-act="exitPreview">${lang==="ar"?"رجوع":"Back"}</button></div>`:"";
+  const existing=S.orders.find(o=>o.k===L.k);if(existing)return renderTrack(existing,banner);
+  const s=seller(L.sid),fee=+L.f||0,total=(+L.a||0)+fee;ui.cust=L;ui.custLoc=null;
+  $("#app").innerHTML=`<div class="app">${banner}
+  <div class="shopline"><div class="avatar">${esc((s.shop||"?").trim()[0]||"?")}</div><div><h1 style="margin:0">${esc(s.shop)}</h1><div class="muted">${t("custLead")}</div></div></div>
+  <div class="panel receipt" style="margin-top:20px">
+    <div class="row"><span>${t("item_")}</span><span>${esc(L.i)}</span></div>
+    <div class="row"><span>${t("price_")}</span><span class="num">${aed(L.a)}</span></div>
+    <div class="row"><span>${t("fee_")}</span><span class="num">${fee?aed(fee):t("free")}</span></div>
+    <div class="row total"><span>${t("total")}</span><span class="num">${aed(total)}</span></div>
+    <div class="secure" style="margin-top:6px"><span style="width:14px;height:14px;display:inline-grid">${IC.lock}</span>${t("fixedNote")}</div>
+    ${L.n?`<p style="margin:10px 0 0" class="muted">${esc(L.n)}</p>`:""}</div>
+  <form class="panel grid" data-form="order" novalidate>
+    <h2>${t("yourDetails")}</h2>
+    <div class="grid two"><div><label for="cname">${t("cname")}</label><input id="cname" autocomplete="name" required></div>
+      <div><label for="cphone">${t("cphone")}</label><input id="cphone" type="tel" class="ltr" autocomplete="tel" placeholder="+971 5X XXX XXXX" required></div></div>
+    <div class="grid two"><div><label for="emirate">${t("emirate")}</label><select id="emirate" data-emsel="careas">${t("emirates").map((e,i)=>`<option value="${i}">${e}</option>`).join("")}</select></div>
+      <div><label for="area">${t("area")}</label><input id="area" list="careas" required placeholder="${t("areaPh")}"><datalist id="careas">${areaOptions(0)}</datalist></div></div>
+    <div><label for="addr">${t("addr")}</label><textarea id="addr" required placeholder="${t("addrPh")}"></textarea></div>
+    <div class="locbtn"><button class="btn ghost sm" type="button" data-act="custLoc">${IC.pin} ${t("shareLoc")}</button><span id="custLocMsg" class="okline"></span></div>
+    <div><label for="map">${t("map")} <small>${t("optional")}</small></label><input id="map" type="url" class="ltr" placeholder="https://maps.app.goo.gl/..."></div>
+    <div><label for="slot">${t("slot")}</label><select id="slot">${t("slots").map((e,i)=>`<option value="${i}">${e}</option>`).join("")}</select></div>
+    <div><label>${t("payment")}</label><div class="seg">
+      <label><input type="radio" name="pay" value="cod" checked data-act="payChange"><span>${t("cod")}<span class="d">${t("codD")}</span></span></label>
+      <label><input type="radio" name="pay" value="online" data-act="payChange"><span>${t("online")}<span class="d">${t("onlineD")}</span></span></label></div></div>
+    <div id="cardBox" class="grid hidden">
+      <div><label for="cc">${t("card")}</label><input id="cc" class="ltr" inputmode="numeric" autocomplete="cc-number" placeholder="4242 4242 4242 4242" maxlength="23"></div>
+      <div class="grid two"><div><label for="ce">${t("exp")}</label><input id="ce" class="ltr" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5"></div>
+        <div><label for="cv">${t("cvv")}</label><input id="cv" class="ltr" inputmode="numeric" autocomplete="cc-csc" maxlength="4"></div></div>
+      <div class="money" style="margin:0"><div class="mr" style="background:var(--soft)"><span><small>${t("payTo")}</small><b>${esc(s.holder||s.shop)}</b>${s.bankName?` · ${esc(s.bankName)}`:""}</span><span style="width:18px;height:18px;display:inline-grid;color:var(--ok)">${IC.lock}</span></div></div>
+      <div class="secure">${t("payHint")}</div>
+      <div class="secure" style="font-size:.8rem">${t("demoPay")}</div>
+    </div>
+    <p class="err" id="ferr" role="alert"></p>
+    <button class="btn primary full" type="submit" id="custSubmit">${t("confirmCod")} · ${aed(total)}</button>
+  </form></div>`;
+}
+function renderTrack(o,banner){
+  const s=seller(o.sid),order=isRet(o)?["new","assigned","picked",o.status]:["new","assigned","picked","delivered"],idx=order.indexOf(o.status);
+  $("#app").innerHTML=`<div class="app">${banner||""}<div class="panel center pop" style="margin-top:24px">
+    <h1 style="margin-top:4px">${t("trackTitle")}</h1>
+    <div class="k">${t("orderNo")}</div><div class="bignum">#${o.no}</div>
+    <div style="margin:10px 0">${payTag(o)}${o.pay==="cod"?` <span class="tag">${aed(o.total)}</span>`:""}</div>
+    ${o.status!=="delivered"?`<div class="k" style="margin-top:16px">${t("otpLabel")}</div><div class="code">${o.otp}</div><p class="muted" style="margin:4px 0 0">${t("otpHint")}</p>`:""}
+    <ol class="tl">${order.map((st,i)=>{const lg=o.log.find(l=>l.s===st);return `<li class="${i<idx||((o.status==="delivered"||o.status==="returned")&&i===idx)?"done":i===idx?"now":""}"><div><b>${t("tr_"+st)}</b>${lg?`<div class="k">${fmtTime(lg.at)}</div>`:""}</div></li>`}).join("")}</ol>
+    <a class="btn wa" target="_blank" rel="noopener" href="${esc(wa(s.phone,"#"+o.no))}">${t("msgSeller")}</a>
+  </div>
+  ${o.status==="delivered"?(o.rating?`<div class="panel center"><div class="stars-s" style="font-size:1.6rem">${"★".repeat(o.rating.v)}<span>${"★".repeat(5-o.rating.v)}</span></div><p class="muted" style="margin:6px 0 0">${t("rateThanks")}</p>
+    ${S.settings.googleLink?`<a class="btn primary" style="margin-top:14px" target="_blank" rel="noopener" href="${esc(S.settings.googleLink)}">★ ${t("gBtn")}</a><p class="k" style="margin:8px 0 0">${t("gNote")}</p>`:""}</div>`
+    :`<form class="panel center" data-form="rate" data-no="${o.no}"><h2>${t("rateH")}</h2><p class="muted" style="margin-top:-6px">${t("rateP")}</p>
+      <div class="stars" role="radiogroup">${[1,2,3,4,5].map(v=>`<button type="button" role="radio" aria-checked="${ui.stars===v}" aria-label="${v}" class="${(ui.stars||0)>=v?"on":""}" data-act="star" data-v="${v}">★</button>`).join("")}</div>
+      <input id="rc" placeholder="${t("rateC")}" style="margin:12px 0">
+      <button class="btn primary full" type="submit" ${ui.stars?"":"disabled"}>${t("rateSend")}</button></form>`):""}
+  </div>`;
+}
+
+/* ---------- label ---------- */
+function labelHTML(o,qid){const s=seller(o.sid),c=o.c;return `<div class="label">
+      <div class="lh"><span>WASLA · ${t("labelTitle")}</span><span class="no">#${o.no}</span></div>
+      <div class="qr" id="${qid}"></div>
+      <div class="blk"><div class="k">${t("sender")}</div><b>${esc(s.shop)}</b> · <span class="ltr">${esc(s.phone)}</span><div>${esc(s.area)}، ${esc(emName(s.em))}. ${esc(s.addr)}</div></div>
+      <div class="blk"><div class="k">${t("recipient")}</div><b>${esc(c.name)}</b> · <span class="ltr">${esc(c.phone)}</span><div>${esc(c.area)}، ${esc(emName(c.em))}</div><div>${esc(c.addr)}</div></div>
+      <div class="blk"><div class="k">${t("item_")}</div>${esc(o.item)}</div>
+      <div class="cod">${o.pay==="cod"?t("codAmt")+": "+aed(o.total):t("paidFull")}</div></div>`}
+function qrText(o){const s=seller(o.sid),c=o.c;return `WASLA ${o.no}\nFROM: ${s.shop} ${s.phone}\n${s.area}, ${EM_EN[s.em]}\nTO: ${c.name} ${c.phone}\n${c.area}, ${EM_EN[c.em]}\n${c.addr}\n${o.pay==="cod"?"COD "+o.total+" AED":"PAID ONLINE"}`}
+function drawQR(id,o){try{new QRCode(document.getElementById(id),{text:qrText(o),width:170,height:170,correctLevel:QRCode.CorrectLevel.M})}catch(e){const el=document.getElementById(id);if(el)el.innerHTML=`<div class="bignum" style="color:#111">#${o.no}</div>`}}
+function openLabels(list){if(!list.length)return;
+  $("#modal").innerHTML=`<div class="overlay" data-act="closeModal"><div class="sheet pop" role="dialog" aria-modal="true" aria-label="${t("labelsH")}" style="max-width:520px">
+    <div class="actions noprint" style="justify-content:space-between;margin-bottom:12px"><h2 style="margin:0">${t("labelsH")} (${list.length})</h2><div class="actions"><button class="btn primary" data-act="print">${t("print")}</button><button class="btn ghost" data-act="closeModal">${t("close")}</button></div></div>
+    <div class="labels">${list.map((o,i)=>labelHTML(o,"qr"+i)).join("")}</div></div></div>`;
+  list.forEach((o,i)=>drawQR("qr"+i,o));
+}
+function openLabel(no){
+  const o=S.orders.find(x=>x.no===no);if(!o)return;const s=seller(o.sid),c=o.c;
+  $("#modal").innerHTML=`<div class="overlay" data-act="closeModal"><div class="sheet pop" role="dialog" aria-modal="true" aria-label="${t("labelTitle")}">
+    <div class="label">
+      <div class="lh"><span>WASLA · ${t("labelTitle")}</span><span class="no">#${o.no}</span></div>
+      <div class="qr" id="qr"></div>
+      <div class="blk"><div class="k">${t("sender")}</div><b>${esc(s.shop)}</b> · <span class="ltr">${esc(s.phone)}</span><div>${esc(s.area)}، ${esc(emName(s.em))}. ${esc(s.addr)}</div></div>
+      <div class="blk"><div class="k">${t("recipient")}</div><b>${esc(c.name)}</b> · <span class="ltr">${esc(c.phone)}</span><div>${esc(c.area)}، ${esc(emName(c.em))}</div><div>${esc(c.addr)}</div></div>
+      <div class="blk"><div class="k">${t("item_")}</div>${esc(o.item)}</div>
+      <div class="cod">${o.pay==="cod"?t("codAmt")+": "+aed(o.total):t("paidFull")}</div>
+    </div>
+    <div class="actions noprint" style="margin-top:14px;justify-content:flex-end"><button class="btn primary" data-act="print">${t("print")}</button><button class="btn ghost" data-act="closeModal">${t("close")}</button></div>
+  </div></div>`;
+  const txt=`WASLA ${o.no}\nFROM: ${s.shop} ${s.phone}\n${s.area}, ${EM_EN[s.em]}\nTO: ${c.name} ${c.phone}\n${c.area}, ${EM_EN[c.em]}\n${c.addr}\n${o.pay==="cod"?"COD "+o.total+" AED":"PAID ONLINE"}`;
+  try{new QRCode($("#qr"),{text:txt,width:170,height:170,correctLevel:QRCode.CorrectLevel.M})}catch(e){$("#qr").innerHTML=`<div class="bignum" style="color:#111">#${o.no}</div>`}
+}
+
+/* ---------- events ---------- */
+if(/#\/?admin/.test(location.hash))ui.page="admin";
+const go=p=>{ui.page=p;render();window.scrollTo(0,0)};
+const ACT={
+  home(){const now=Date.now();ui.taps=(ui.taps||[]).filter(x=>now-x<2500);ui.taps.push(now);
+    if(!sess&&ui.taps.length>=5){ui.taps=[];return go("admin")}
+    if(!sess&&!location.hash.includes("o="))go("home")},
+  lang(){lang=lang==="ar"?"en":"ar";store.set("wasla_lang",lang);render()},
+  goLogin(){go("login")},goRegister(){ui.regLoc=null;go("register")},
+  logout(){setSess(null);ui={...ui,page:"home",tab:null,link:null,filter:"all",me:null};render();window.scrollTo(0,0)},
+  demo(a){const r=a.dataset.role;setSess(r==="owner"?{role:"owner"}:r==="seller"?{role:"seller",id:S.sellers[0].id}:{role:"driver",id:(S.drivers.find(d=>d.id==="d2")||S.drivers[0]).id});ui.tab=null;render();window.scrollTo(0,0)},
+  tab(a){ui.newDrv=null;ui.tab=a.dataset.tab;ui.filter="all";render();window.scrollTo(0,0)},
+  filter(a){ui.filter=a.dataset.f;render()},
+  auto(){autoAssign();render()},
+  reset(){S=seed();save();ui.flash="";render()},
+  toggleDrv(a){const d=driver(a.dataset.id);d.on=!d.on;save();render()},
+  settle(a){S.orders.forEach(o=>{if(o.driver===a.dataset.id&&o.status==="delivered"&&o.sSet)o.cSet=true});save();render()},
+  settleSeller(a){S.orders.forEach(o=>{if(o.driver===sess.id&&o.sid===a.dataset.sid&&o.status==="delivered")o.sSet=true});save();render()},
+  async copyVal(a){try{await navigator.clipboard.writeText(a.dataset.v)}catch(e){}const tx=a.textContent;a.textContent=t("copied");setTimeout(()=>a.textContent=tx,1400)},
+  zall(a){document.querySelectorAll('input[name=z]').forEach(x=>x.checked=a.checked)},
+  label(a){openLabel(a.dataset.no)},
+  retBack(a){S.orders.forEach(o=>{if(o.driver===sess.id&&o.sid===a.dataset.sid&&o.status==="returning")setStatus(o,"returned")});save();render()},
+  pickAll(a){S.orders.forEach(o=>{if(o.driver===sess.id&&o.sid===a.dataset.sid&&o.status==="assigned")setStatus(o,"picked")});save();render()},
+  printAll(){openLabels(S.orders.filter(o=>o.sid===sess.id&&(o.status==="new"||o.status==="assigned")))},
+  adminDemo(){setSess({role:"owner"});ui.tab=null;ui.page="home";render();window.scrollTo(0,0)},
+  failOpen(a){const no=a.dataset.no;$("#modal").innerHTML=`<div class="overlay" data-act="closeModal"><div class="sheet pop" role="dialog" aria-modal="true" aria-label="${t("failH")}">
+    <h2>${t("failH")}</h2><div class="seg" style="flex-direction:column">${t("failR").map((r,i)=>`<label><input type="radio" name="fr" value="${i}" ${i===0?"checked":""}>${r}</label>`).join("")}</div>
+    <div class="actions" style="margin-top:16px"><button class="btn primary" data-act="failDo" data-no="${no}" data-mode="retry">${t("failRetry")}</button><button class="btn ghost" data-act="failDo" data-no="${no}" data-mode="return">${t("failReturn")}</button></div></div></div>`},
+  failDo(a){const o=S.orders.find(x=>x.no===a.dataset.no),r=+document.querySelector('input[name=fr]:checked').value;
+    o.attempts=(o.attempts||0)+1;o.failReason=r;o.log.push({s:"failed",at:Date.now(),r});if(a.dataset.mode==="return")setStatus(o,"returning");
+    save();$("#modal").innerHTML="";render()},
+  podView(a){const o=S.orders.find(x=>x.no===a.dataset.no);$("#modal").innerHTML=`<div class="overlay" data-act="closeModal"><div class="sheet pop"><h2>${t("podView")} · <span class="ltr">#${o.no}</span></h2><img src="${o.pod}" alt="" style="width:100%;border-radius:10px"><div class="actions" style="justify-content:flex-end;margin-top:12px"><button class="btn ghost" data-act="closeModal">${t("close")}</button></div></div></div>`},
+  star(a){ui.stars=+a.dataset.v;render()},
+  scan(){openScanner()},
+  scanAgain(){stopScan();openScanner()},
+  closeModal(a,e){if(a&&a.classList&&a.classList.contains("overlay")&&e&&e.target!==a)return;stopScan();$("#modal").innerHTML="";document.body.classList.remove("printing")},
+  print(){document.body.classList.add("printing");try{window.print()}catch(e){}setTimeout(()=>document.body.classList.remove("printing"),500)},
+  async copy(a){try{await navigator.clipboard.writeText($("#linkOut").value)}catch(e){$("#linkOut").select();try{document.execCommand("copy")}catch(_){}}a.textContent=t("copied");setTimeout(()=>a.textContent=t("copy"),1500)},
+  preview(){ui.preview=true;render();window.scrollTo(0,0)},
+  exitPreview(){ui.preview=false;ui.tab="mine";render();window.scrollTo(0,0)},
+  async myLoc(){try{ui.me=await getLoc();render()}catch(e){const x=$("#locErr");if(x)x.textContent=t("locFail")}},
+  async custLoc(){const m=$("#custLocMsg");try{ui.custLoc=await getLoc();m.style.color="";m.textContent=t("locOk")}catch(e){m.style.color="var(--err)";m.textContent=t("locFail")}},
+  async regLoc(){const m=$("#regLocMsg");try{ui.regLoc=await getLoc();m.style.color="";m.textContent=t("locOk")}catch(e){m.style.color="var(--err)";m.textContent=t("locFail")}},
+  pickup(a){const o=S.orders.find(x=>x.no===a.dataset.no);setStatus(o,"picked");save();render()},
+  deliver(a){const o=S.orders.find(x=>x.no===a.dataset.no),v=$("#otp-"+o.no).value.trim();if(v!==o.otp){$("#oerr-"+o.no).textContent=t("wrongOtp");return}if(ui.pod&&ui.pod[o.no]){o.pod=ui.pod[o.no];delete ui.pod[o.no]}setStatus(o,"delivered");save();render()},
+  payChange(){const on=document.querySelector('input[name=pay]:checked').value==="online";$("#cardBox").classList.toggle("hidden",!on);
+    const L=ui.cust,total=(+L.a||0)+(+L.f||0);$("#custSubmit").textContent=on?t("payNow").replace("{x}",aed(total)):t("confirmCod")+" · "+aed(total)}
+};
+document.addEventListener("click",e=>{const a=e.target.closest("[data-act]");if(!a)return;if(a.tagName==="INPUT"&&a.type!=="radio"&&a.type!=="checkbox")return;const f=ACT[a.dataset.act];if(f){if(a.tagName!=="INPUT")e.preventDefault();f(a,e)}});
+function shrink(file,cb){const img=new Image();img.onload=()=>{const m=480,sc=Math.min(1,m/Math.max(img.width,img.height)),cv=document.createElement("canvas");cv.width=img.width*sc;cv.height=img.height*sc;cv.getContext("2d").drawImage(img,0,0,cv.width,cv.height);URL.revokeObjectURL(img.src);cb(cv.toDataURL("image/jpeg",.7))};img.src=URL.createObjectURL(file)}
+document.addEventListener("change",e=>{
+  const pd=e.target.closest("[data-pod]");if(pd){const f=pd.files[0];if(f)shrink(f,u=>{ui.pod=ui.pod||{};ui.pod[pd.dataset.pod]=u;render()});return}
+  const em=e.target.closest("[data-emsel]");if(em){const dl=document.getElementById(em.dataset.emsel);if(dl)dl.innerHTML=areaOptions(+em.value);return}
+  const sel=e.target.closest("[data-assign]");if(!sel)return;const o=S.orders.find(x=>x.no===sel.dataset.assign);
+  if(sel.value){o.driver=sel.value;if(o.status==="new")setStatus(o,"assigned")}else{o.driver=null;o.status="new"}save();render()});
+document.addEventListener("input",e=>{if(e.target.id!=="cphone")return;const cod=document.querySelector('input[name=pay][value=cod]');if(!cod)return;const r=riskOf(e.target.value)>=2;cod.disabled=r;
+  if(r&&cod.checked){document.querySelector('input[name=pay][value=online]').checked=true;ACT.payChange()}const er=$("#ferr");if(er)er.textContent=r?t("riskCod"):""});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("#modal").innerHTML)ACT.closeModal()});
+function readBank(){const holder=$("#bh").value.trim(),bankName=$("#bn").value.trim(),iban=$("#bi").value.replace(/\s+/g,"").toUpperCase(),err=$("#ferr");
+  if(!holder||!bankName||!iban){err.textContent=t("req");return null}if(!/^AE\d{21}$/.test(iban)){err.textContent=t("badIban");return null}return{holder,bankName,iban}}
+const FORM={
+  login(){const ph=$("#lph").value.trim(),pin=$("#lpin").value.trim();
+    {const s=S.sellers.find(x=>samePhone(x.phone,ph)&&x.pin===pin),d=S.drivers.find(x=>samePhone(x.phone,ph)&&x.pin===pin);
+      if(s)setSess({role:"seller",id:s.id});else if(d)setSess({role:"driver",id:d.id});else return $("#ferr").textContent=t("badLogin")}
+    ui.tab=null;render();window.scrollTo(0,0)},
+  register(){const shop=$("#rs").value.trim(),phone=$("#rp").value.trim(),addr=$("#ra").value.trim(),pin=$("#rpin").value.trim(),em=+$("#rem").value,area=$("#rar").value.trim(),err=$("#ferr");
+    if(!shop||!phone||!addr||!pin||!area)return err.textContent=t("req");if(digits(phone).length<8)return err.textContent=t("badPhone");
+    if([...S.sellers,...S.drivers,S.owner].some(x=>samePhone(x.phone,phone)))return err.textContent=t("phoneTaken");
+    const b=readBank();if(!b)return;
+    const id="s"+uid();S.sellers.push({id,shop,phone,em,area,addr,pin,...b,...(ui.regLoc||{})});save();setSess({role:"seller",id});ui.tab=null;render();window.scrollTo(0,0)},
+  addDriver(){const name=$("#dn").value.trim(),phone=$("#dp").value.trim(),zones=[...document.querySelectorAll('input[name=z]:checked')].map(x=>+x.value),err=$("#ferr");
+    if(!name||!phone||!zones.length)return err.textContent=t("req");if(digits(phone).length<8)return err.textContent=t("badPhone");
+    if([...S.sellers,...S.drivers,S.owner].some(x=>samePhone(x.phone,phone)))return err.textContent=t("phoneTaken");
+    const pin=$("#dpin").value.trim()||"1234";S.drivers.push({id:"d"+uid(),name,phone,zones,pin,on:true});save();ui.newDrv={name,phone,pin};render()},
+  bank(){const b=readBank();if(!b)return;Object.assign(S.sellers.find(x=>x.id===sess.id),b);save();ui.flash=t("bankSaved");render()},
+  rate(){const f=document.querySelector('form[data-form=rate]'),o=S.orders.find(x=>x.no===f.dataset.no);if(!ui.stars)return;o.rating={v:ui.stars,c:$("#rc").value.trim()};ui.stars=0;save();render()},
+  adminLogin(){const ph=$("#aph").value.trim(),pin=$("#apin").value.trim();if(!(samePhone(ph,S.owner.phone)&&pin===S.owner.pin))return $("#ferr").textContent=t("badLogin");
+    setSess({role:"owner"});ui.tab=null;ui.page="home";render();window.scrollTo(0,0)},
+  settings(){const v=$("#gl").value.trim();if(v&&!/^https?:\/\//.test(v))return $("#ferr")&&($("#ferr").textContent=t("req"));S.settings.googleLink=v;save();ui.flash=t("saved");render()},
+  manualScan(){const v=$("#manNo").value.trim();if(v)handleScan(v.toUpperCase().startsWith("W")?v:"W"+v)},
+  link(){const i=$("#item").value.trim(),a=$("#price").value;if(!i||a==="")return $("#ferr").textContent=t("req");
+    const payload={sid:sess.id,i,a:+a,f:+($("#fee").value||0),n:$("#note").value.trim(),k:uid()};
+    S.links=S.links||{};S.links[payload.k]=payload;save();
+    ui.link={payload,url:location.href.split("#")[0]+"#o="+enc(payload)};render()},
+  order(){const f={name:$("#cname").value.trim(),phone:$("#cphone").value.trim(),em:+$("#emirate").value,area:$("#area").value.trim(),addr:$("#addr").value.trim(),map:$("#map").value.trim(),slot:+$("#slot").value,...(ui.custLoc||{})};
+    const pay=document.querySelector('input[name=pay]:checked').value,err=$("#ferr");
+    if(pay==="cod"&&riskOf(f.phone)>=2){const on=document.querySelector('input[name=pay][value=online]');on.checked=true;ACT.payChange();return err.textContent=t("riskCod")}
+    if(!f.name||!f.phone||!f.area||!f.addr)return err.textContent=t("req");if(digits(f.phone).length<8)return err.textContent=t("badPhone");
+    const place=()=>{S.orders.push(newOrder(S,ui.cust,f,pay));save();render();window.scrollTo(0,0)};
+    if(pay!=="online")return place();
+    const cc=digits($("#cc").value),ce=$("#ce").value.trim(),cv=digits($("#cv").value);
+    if(cc.length<12||!/^\d{2}\/\d{2}$/.test(ce)||cv.length<3)return err.textContent=t("badCard");
+    const btn=$("#custSubmit"),old=btn.textContent;btn.disabled=true;btn.textContent=t("paying");
+    setTimeout(()=>{if(cc.endsWith("0002")){btn.disabled=false;btn.textContent=old;err.textContent=t("payFail");return}place()},1300)}
+};
+document.addEventListener("submit",e=>{const f=e.target.dataset.form;if(f&&FORM[f]){e.preventDefault();const er=$("#ferr");if(er)er.textContent="";FORM[f]()}});
+render();
+</script></body></html>
